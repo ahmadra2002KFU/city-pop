@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/Tajawal-Regular.ttf",
+    "path": "Tajawal-Regular.ttf",
+    "bytes": 60364
+  },
+  {
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/Tajawal-Medium.ttf",
+    "path": "Tajawal-Medium.ttf",
+    "bytes": 62280
+  },
+  {
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/Tajawal-Bold.ttf",
+    "path": "Tajawal-Bold.ttf",
+    "bytes": 59988
+  },
+  {
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/Tajawal-ExtraBold.ttf",
+    "path": "Tajawal-ExtraBold.ttf",
+    "bytes": 59648
+  },
+  {
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/OFL.txt",
+    "path": "Tajawal-OFL.txt",
+    "bytes": 4464
+  },
+  {
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/outfit/OFL.txt",
+    "path": "Outfit-OFL.txt",
+    "bytes": 4389
+  },
+  {
+    "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/outfit/Outfit%5Bwght%5D.ttf",
+    "path": "Outfit-Variable.ttf",
+    "bytes": 110884
+  }
+]
