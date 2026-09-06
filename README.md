@@ -35,3 +35,15 @@ The site uses React, Vinext, Tailwind CSS, and the bundled Base UI dialog and ch
 The original wordmark, entrance rendering and zone imagery are extracted from the supplied PDF. The visual palette follows its navy/black, blue, pink and violet identity. PDF fonts were encoded as unnamed Type3 glyphs; Tajawal and Outfit are readable web alternatives, supplied locally with their OFL licenses in `public/fonts`.
 
 Image provenance (PDF pages): entrance and wordmark 1; six zone scenes 7; courtyard experience 19. Source project proposes Al Khobar as its first stop. Imagery is concept artwork. Food and café operators, retail brands, dates and ticket prices are not confirmed, and the demo does not present them as confirmed.
+
+## GitHub Pages
+
+The public demo is deployed from `main` by `.github/workflows/pages.yml` to:
+
+https://card.ahmadgra.com/city-pop/
+
+The workflow installs locked dependencies, lints and type-checks the site, builds and checks the static export, and deploys `dist/client`. It reads the domain and project path directly from GitHub Pages settings. GitHub Pages uses **GitHub Actions** as its publishing source.
+
+For a local GitHub Pages build, set `NEXT_PUBLIC_BASE_PATH=/city-pop` and `NEXT_PUBLIC_SITE_ORIGIN=https://card.ahmadgra.com`, then run `npm run build` and `npm run check:export`. Without these variables, the normal root-path local and Sites builds still work. Source fonts in `app/fonts` are bundled with hashed asset URLs so both deployment paths resolve correctly. Font licenses are retained in `public/fonts`.
+
+The demo uses local UI state and hash navigation; it does not depend on a server for routes, bookings, or payments.

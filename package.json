@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "check:export": "node scripts/check-export.mjs",
     "start": "vite preview --outDir dist/client --host 127.0.0.1",
     "lint": "oxlint",
     "format": "oxfmt"

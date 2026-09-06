@@ -3,6 +3,7 @@
 /* oxlint-disable nextjs/no-img-element -- Static export serves the original artwork locally, without an image service. */
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { decodePlan } from '@/lib/visit-plan';
+import { assetPath } from '@/lib/asset-path';
 import {
   ArrowUpLeft,
   ArrowUpRight,
@@ -219,7 +220,7 @@ export default function Home() {
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="City Pop">
           <img
-            src="/images/city-pop-wordmark.png"
+            src={assetPath('/images/city-pop-wordmark.png')}
             alt="CITY POP"
             width={175}
             height={35}
@@ -288,7 +289,7 @@ export default function Home() {
         <section className="hero" aria-labelledby="hero-title">
           <img
             className="hero-image"
-            src="/images/city-pop-gate.jpg"
+            src={assetPath('/images/city-pop-gate.jpg')}
             alt={t(
               'تصوّر بوابة سيتي بوب المضيئة بالنيون الوردي والأزرق',
               'City Pop concept entrance illuminated in pink and blue neon',
@@ -431,7 +432,7 @@ export default function Home() {
                   aria-label={t(`اكتشف ${zone.ar}`, `Explore ${zone.en}`)}
                 >
                   <img
-                    src={`/images/${zone.image}`}
+                    src={assetPath(`/images/${zone.image}`)}
                     alt=""
                     loading="lazy"
                     width={720}
@@ -475,7 +476,7 @@ export default function Home() {
         <section className="experience section-shell" id="experience">
           <div className="experience-visual">
             <img
-              src="/images/experience.jpg"
+              src={assetPath('/images/experience.jpg')}
               alt={t(
                 'تصوّر الساحة الاجتماعية داخل سيتي بوب',
                 'Concept of the social courtyard inside City Pop',
@@ -603,7 +604,7 @@ export default function Home() {
         <div className="footer-top">
           <a className="wordmark footer-wordmark" href="#top">
             <img
-              src="/images/city-pop-wordmark.png"
+              src={assetPath('/images/city-pop-wordmark.png')}
               alt="CITY POP"
               width={175}
               height={35}
@@ -654,7 +655,7 @@ export default function Home() {
               </button>
               <img
                 className="dialog-hero"
-                src={`/images/${current.image}`}
+                src={assetPath(`/images/${current.image}`)}
                 alt={t(`تصوّر منطقة ${current.ar}`, `Concept of ${current.en}`)}
               />
               <div className="dialog-body">
