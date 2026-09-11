@@ -299,16 +299,6 @@ export default function Home() {
       )}
       <main id="main">
         <section className="hero" aria-labelledby="hero-title">
-          <img
-            className="hero-image"
-            src={assetPath('/images/city-pop-gate.jpg')}
-            alt={t(
-              'تصوّر بوابة سيتي بوب المضيئة بالنيون الوردي والأزرق',
-              'City Pop concept entrance illuminated in pink and blue neon',
-            )}
-            fetchPriority="high"
-          />
-          <div className="hero-shade" />
           <div className="hero-content">
             <p className="eyebrow hero-eyebrow">
               <span className="live-dot" />
@@ -331,18 +321,28 @@ export default function Home() {
               )}
             </p>
             <div className="hero-links">
-              <a className="primary-link" href="#zones">
+              <a className="hero-action hero-discover-link" href="#zones">
                 {t('اكتشف سيتي بوب', 'Step into City Pop')}
                 <Arrow size={19} />
               </a>
-              <a className="hero-partner-link" href="#services">
+              <a className="hero-action hero-partner-link" href="#services">
                 {t('المشاركة والرعاية', 'Participation & sponsorship')}
                 <Diagonal size={18} />
               </a>
             </div>
           </div>
-          <div className="hero-edge-label" aria-hidden="true">
-            A LITTLE ESCAPE. A LOT TO DISCOVER.
+          <div className="hero-visual">
+            <img
+              className="hero-image"
+              src={assetPath('/images/city-pop-gate.jpg')}
+              alt={t(
+                'تصوّر بوابة سيتي بوب المضيئة بالنيون الوردي والأزرق',
+                'City Pop concept entrance illuminated in pink and blue neon',
+              )}
+              width={3594}
+              height={2006}
+              fetchPriority="high"
+            />
           </div>
           <div className="hero-bottom">
             <span>
