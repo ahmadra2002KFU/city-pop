@@ -336,7 +336,7 @@ export default function Home() {
                 <Arrow size={19} />
               </a>
               <a className="hero-partner-link" href="#services">
-                {t('كن جزءًا من المدينة', 'Be part of the city')}
+                {t('المشاركة والرعاية', 'Participation & sponsorship')}
                 <Diagonal size={18} />
               </a>
             </div>

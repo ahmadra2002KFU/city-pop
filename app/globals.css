@@ -286,9 +286,9 @@ svg {
   inset: 0;
   background: linear-gradient(
     180deg,
-    #03040e33 0%,
-    transparent 50%,
-    #07081215 71%,
+    #03040eeb 0%,
+    #040616c7 42%,
+    #04061642 70%,
     #070812 100%
   );
   z-index: -2;
@@ -319,8 +319,8 @@ svg {
   box-shadow: 0 0 10px #ffb6c360;
 }
 .hero h1 {
-  font-size: clamp(3.6rem, 5.8vw, 5.5rem);
-  line-height: 1.08;
+  font-size: clamp(3.6rem, 5.5vw, 5rem);
+  line-height: 1.16;
   letter-spacing: -2px;
   text-shadow: 0 4px 40px #03051440;
 }
@@ -331,9 +331,11 @@ svg {
 }
 .hero-copy {
   font-size: 18px;
-  color: #d5d0e8;
-  line-height: 1.8;
-  margin: 19px 0 23px;
+  color: #e4e0f1;
+  line-height: 1.9;
+  max-width: 34rem;
+  margin: 22px auto 0;
+  text-wrap: balance;
 }
 .primary-link {
   display: inline-flex !important;
@@ -1158,7 +1160,7 @@ svg {
     padding-top: 136px !important;
   }
   .hero h1 {
-    font-size: 72px;
+    font-size: clamp(3.4rem, 8vw, 4rem);
   }
   .hero {
     min-height: 820px;
@@ -1684,14 +1686,14 @@ svg {
     background: linear-gradient(
       180deg,
       #040512 0%,
-      #04051266 15%,
-      transparent 45%,
-      transparent 80%,
+      #040512f2 32%,
+      #040512a3 56%,
+      #07081220 78%,
       #070812
     );
   }
   .city-site[dir='ltr'] .hero h1 {
-    font-size: 57px;
+    font-size: clamp(3rem, 7.2vw, 3.6rem);
   }
 }
 @media (max-width: 520px) {
@@ -1785,20 +1787,39 @@ svg {
 
 /* Project services, original masterplans, and sponsorship comparison. */
 .hero-links {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  width: min(100%, 550px);
+  margin: 28px auto 0;
+  gap: 14px;
+}
+.hero-links > a {
+  display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px 28px;
+  justify-content: center;
+  min-height: 56px !important;
+  padding: 14px 20px !important;
+  gap: 12px !important;
+  font-size: 1rem !important;
+  font-weight: 700;
+  line-height: 1.5;
+  border-radius: 7px !important;
+  white-space: normal;
+  text-wrap: balance;
 }
 .hero-partner-link {
-  display: inline-flex;
-  gap: 10px;
-  align-items: center;
-  font-weight: 700;
-  padding-block: 10px;
+  color: #f4f4ff;
+  background: #10192eeb;
+  border: 1px solid #b0bbd399;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 .hero-partner-link:hover {
-  color: var(--pink);
+  color: #fff;
+  background: #202942;
+  border-color: var(--pink);
 }
 .about-copy .project-credit {
   color: var(--pink);
@@ -2599,9 +2620,6 @@ summary:focus-visible,
   .organizer-credit > a {
     margin-inline-start: 0;
   }
-  .hero-links {
-    gap: 8px 22px;
-  }
 }
 @media (max-width: 520px) {
   .project-stats {
@@ -2732,17 +2750,45 @@ summary:focus-visible,
   .brief-review pre {
     padding: 15px;
   }
-  .hero-partner-link {
-    font-size: 0.9375rem;
-  }
-  .city-site[dir='ltr'] .hero-links {
-    gap: 6px 16px;
-  }
-  .city-site[dir='ltr'] .hero-links .primary-link {
-    padding-inline: 18px !important;
-  }
   .city-site[dir='ltr'] .zone-card h3 {
     font-size: 1.7rem;
     line-height: 1.35;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    height: auto;
+    min-height: 820px;
+    padding-bottom: 200px;
+  }
+  .hero .hero-content h1,
+  .city-site[dir='ltr'] .hero h1 {
+    font-size: clamp(2.75rem, 10vw, 3.4rem);
+    line-height: 1.18;
+  }
+  .hero .hero-copy {
+    font-size: 1rem;
+    line-height: 1.9;
+    margin-top: 20px;
+  }
+  .hero .hero-eyebrow {
+    font-size: 0.875rem;
+  }
+  .hero-links {
+    grid-template-columns: 1fr;
+    width: min(100%, 360px);
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .hero .hero-shade {
+    background: linear-gradient(
+      180deg,
+      #040512 0%,
+      #040512f2 32%,
+      #040512a3 56%,
+      #07081220 78%,
+      #070812 100%
+    );
   }
 }
