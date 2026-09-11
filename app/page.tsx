@@ -344,6 +344,9 @@ export default function Home() {
               fetchPriority="high"
             />
           </div>
+          <div className="hero-edge-label" aria-hidden="true">
+            A LITTLE ESCAPE. A LOT TO DISCOVER.
+          </div>
           <div className="hero-bottom">
             <span>
               <MapPin size={17} />

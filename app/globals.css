@@ -265,15 +265,20 @@ svg {
 .mobile-nav {
   display: none;
 }
-/* The copy, artwork, and location are separate rows so they never overlap. */
+/* Only the empty sky overlaps the content; the gate stays below the actions. */
 .hero {
-  display: flow-root;
-  background: #040512;
+  --hero-art-height: max(580px, 55.82vw);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #03040e;
 }
 .hero-content {
-  width: min(780px, calc(100% - 48px));
+  position: relative;
+  z-index: 1;
+  width: min(760px, calc(100% - 48px));
   margin-inline: auto;
-  padding-block: 128px 36px;
+  padding-top: 128px;
   text-align: center;
 }
 .hero-eyebrow {
@@ -286,9 +291,10 @@ svg {
   margin-bottom: 14px;
 }
 .hero h1 {
-  font-size: clamp(2.75rem, 5vw, 3.75rem);
-  line-height: 1.2;
-  letter-spacing: -1px;
+  font-size: clamp(3.6rem, 5.8vw, 5.5rem);
+  line-height: 1.1;
+  letter-spacing: -2px;
+  text-shadow: 0 4px 40px #03051440;
 }
 .hero h1 > span {
   background: linear-gradient(100deg, #56b8ff 0%, #a69be4 40%, #ffb6c3 80%);
@@ -336,7 +342,7 @@ svg {
   background: #ffccda;
 }
 .hero-partner-link {
-  background: #10192e;
+  background: #10192ecc;
   border-color: #b0bbd399;
   color: #f4f4ff;
 }
@@ -346,31 +352,48 @@ svg {
 }
 .hero-visual {
   position: relative;
-  overflow: hidden;
+  margin-top: calc(var(--hero-art-height) * -0.36);
 }
 .hero-image {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 1;
+  height: var(--hero-art-height);
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center;
 }
 .hero-visual::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(transparent 65%, #070812);
+  background: linear-gradient(
+    180deg,
+    #03040e,
+    #03040e00 20%,
+    #07081200 76%,
+    #070812
+  );
+}
+.hero-edge-label {
+  position: absolute;
+  inset-inline-start: 32px;
+  top: 49%;
+  writing-mode: vertical-rl;
+  font-family: Outfit, Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2.6px;
+  color: #d0cde699;
+  direction: ltr;
 }
 .hero-bottom {
+  position: absolute;
+  inset-inline: 56px;
+  bottom: 24px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 18px 24px;
-  padding: 22px 56px 28px;
-  background: #070812;
 }
 .hero-bottom > span:first-child {
   display: flex;
@@ -381,24 +404,29 @@ svg {
 .hero-bottom > span:first-child svg {
   color: var(--pink);
 }
+[dir='ltr'] .hero h1 {
+  font-size: clamp(3.2rem, 5.3vw, 4.9rem);
+}
 @media (max-width: 800px) {
   .hero-content {
     padding-top: 114px;
   }
-  .hero-image {
-    aspect-ratio: 2 / 1;
-  }
   .hero-bottom {
-    padding-inline: 24px;
+    inset-inline: 24px;
+  }
+  .hero-edge-label {
+    display: none;
   }
 }
 @media (max-width: 600px) {
   .hero-content {
     width: calc(100% - 40px);
-    padding-bottom: 32px;
   }
-  .hero h1 {
-    font-size: clamp(2.5rem, 9vw, 3.25rem);
+  .hero h1,
+  [dir='ltr'] .hero h1 {
+    font-size: clamp(2.75rem, 10vw, 3.4rem);
+    line-height: 1.18;
+    letter-spacing: -1px;
   }
   .hero-copy {
     font-size: 1rem;
@@ -408,14 +436,11 @@ svg {
     width: min(100%, 360px);
     gap: 12px;
   }
-  .hero-image {
-    aspect-ratio: 3 / 2;
-  }
   .hero-bottom {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 12px;
-    padding-inline: 20px;
+    inset-inline: 20px;
   }
   .hero-bottom .concept-note {
     grid-row: 2;
