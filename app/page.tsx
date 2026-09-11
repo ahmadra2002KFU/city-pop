@@ -5,6 +5,10 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { decodePlan } from '@/lib/visit-plan';
 import { assetPath } from '@/lib/asset-path';
 import {
+  ProjectOpportunities,
+  ProjectStats,
+} from '@/components/project-opportunities';
+import {
   ArrowUpLeft,
   ArrowUpRight,
   ArrowDown,
@@ -40,8 +44,8 @@ const zones = [
   {
     id: 'hub',
     en: 'The Hub',
-    ar: 'ذا هب',
-    tag: ['اكتشف وجرّب', 'Discover & try'],
+    ar: 'الخيمة الرئيسية',
+    tag: ['الجمال وأسلوب الحياة', 'Beauty & lifestyle'],
     image: 'hub.jpg',
     icon: ShoppingBag,
     color: '#ffb6c3',
@@ -56,9 +60,9 @@ const zones = [
   },
   {
     id: 'souq',
-    en: 'Souq Pop',
-    ar: 'سوق بوب',
-    tag: ['تمشَّ واكتشف', 'Stroll & discover'],
+    en: 'Social Street',
+    ar: 'الشارع الاجتماعي',
+    tag: ['المتاجر والحرف', 'Shops & local makers'],
     image: 'souq.jpg',
     icon: Sparkles,
     color: '#45bafa',
@@ -90,9 +94,9 @@ const zones = [
   },
   {
     id: 'kids',
-    en: 'Little Pop',
-    ar: 'أبطال بوب',
-    tag: ['العب وتخيّل', 'Play & imagine'],
+    en: 'Tiny Town',
+    ar: 'المدينة الصغيرة',
+    tag: ['ألعاب وأنشطة الأطفال', 'Children’s play & activities'],
     image: 'kids.jpg',
     icon: Palette,
     color: '#b5a0f7',
@@ -107,9 +111,9 @@ const zones = [
   },
   {
     id: 'stage',
-    en: 'Stage Pop',
-    ar: 'ستيج بوب',
-    tag: ['عِش اللحظة', 'Feel the moment'],
+    en: 'Main Stage',
+    ar: 'المسرح الرئيسي',
+    tag: ['الموسيقى والعروض', 'Music & performances'],
     image: 'stage.jpg',
     icon: Music2,
     color: '#fa9bbc',
@@ -126,7 +130,7 @@ const zones = [
     id: 'play',
     en: 'Pop Off',
     ar: 'بوب أوف',
-    tag: ['تحدَّ وانطلق', 'Challenge & play'],
+    tag: ['الألعاب والتحديات', 'Games & challenges'],
     image: 'play.jpg',
     icon: Gamepad2,
     color: '#74d8d2',
@@ -139,7 +143,11 @@ const zones = [
       ['Arcade & carnival', 'Laser tag', 'Escape rooms'],
     ],
   },
-];
+].sort(
+  (a, b) =>
+    ['hub', 'souq', 'kids', 'food', 'stage', 'play'].indexOf(a.id) -
+    ['hub', 'souq', 'kids', 'food', 'stage', 'play'].indexOf(b.id),
+);
 
 const zoneIds = zones.map((zone) => zone.id);
 function subscribePlan(notify: () => void) {
@@ -230,9 +238,10 @@ export default function Home() {
           className="desktop-nav"
           aria-label={t('القائمة الرئيسية', 'Main navigation')}
         >
-          <a href="#about">{t('عن سيتي بوب', 'The story')}</a>
-          <a href="#zones">{t('اكتشف المناطق', 'Explore the zones')}</a>
-          <a href="#experience">{t('التجربة', 'The experience')}</a>
+          <a href="#zones">{t('المناطق', 'Zones')}</a>
+          <a href="#services">{t('الخدمات الإلكترونية', 'Digital services')}</a>
+          <a href="#masterplan">{t('المخطط والمساحات', 'Layout & spaces')}</a>
+          <a href="#sponsorship">{t('الرعاية', 'Sponsorship')}</a>
         </nav>
         <div className="header-actions">
           <button
@@ -267,6 +276,9 @@ export default function Home() {
           {[
             ['#about', t('عن سيتي بوب', 'The story')],
             ['#zones', t('اكتشف المناطق', 'Explore the zones')],
+            ['#services', t('الخدمات الإلكترونية', 'Digital services')],
+            ['#masterplan', t('المخطط والمساحات', 'Layout & spaces')],
+            ['#sponsorship', t('باقات الرعاية', 'Sponsorship packages')],
             ['#experience', t('التجربة', 'The experience')],
           ].map(([href, label]) => (
             <a href={href} key={href} onClick={() => setMenu(false)}>
@@ -318,10 +330,16 @@ export default function Home() {
                 'Everything you love. All in one place.',
               )}
             </p>
-            <a className="primary-link" href="#zones">
-              {t('اكتشف سيتي بوب', 'Step into City Pop')}
-              <Arrow size={19} />
-            </a>
+            <div className="hero-links">
+              <a className="primary-link" href="#zones">
+                {t('اكتشف سيتي بوب', 'Step into City Pop')}
+                <Arrow size={19} />
+              </a>
+              <a className="hero-partner-link" href="#services">
+                {t('كن جزءًا من المدينة', 'Be part of the city')}
+                <Diagonal size={18} />
+              </a>
+            </div>
           </div>
           <div className="hero-edge-label" aria-hidden="true">
             A LITTLE ESCAPE. A LOT TO DISCOVER.
@@ -382,6 +400,12 @@ export default function Home() {
                 'City Pop is a traveling celebration of beauty and lifestyle. We bring your digital world to life through experiences you can feel, taste, and share. Discover a new brand. Make a memory with your people. Find a moment worth keeping.',
               )}
             </p>
+            <p className="project-credit">
+              {t(
+                'أحد مشاريع شركة مفيد، بالتعاون مع الاستديو الإبداعي.',
+                'A Mufeed project, in collaboration with the Creative Studio.',
+              )}
+            </p>
             <div className="about-facts">
               <div>
                 <strong>06</strong>
@@ -400,6 +424,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <ProjectStats ar={ar} />
         <section className="zones-section section-shell" id="zones">
           <div className="section-heading">
             <div>
@@ -473,6 +498,11 @@ export default function Home() {
             )}
           </p>
         </section>
+        <ProjectOpportunities
+          ar={ar}
+          zones={zones}
+          onOpenPlanner={openPlanner}
+        />
         <section className="experience section-shell" id="experience">
           <div className="experience-visual">
             <img
@@ -601,6 +631,28 @@ export default function Home() {
         </section>
       </main>
       <footer className="site-footer section-shell">
+        <div className="organizer-credit">
+          <img
+            src={assetPath('/images/mufeed-logo-white.png')}
+            width={188}
+            height={56}
+            alt={t('شركة مفيد', 'Mufeed')}
+            loading="lazy"
+          />
+          <div>
+            <strong>{t('أحد مشاريع شركة مفيد', 'A Mufeed project')}</strong>
+            <p>
+              {t(
+                'بالتعاون مع الاستديو الإبداعي',
+                'In collaboration with the Creative Studio',
+              )}
+            </p>
+          </div>
+          <a href="#services">
+            {t('استكشف فرص المشاركة', 'Explore participation opportunities')}
+            <Diagonal size={18} />
+          </a>
+        </div>
         <div className="footer-top">
           <a className="wordmark footer-wordmark" href="#top">
             <img
@@ -623,7 +675,8 @@ export default function Home() {
         </div>
         <div className="footer-bottom">
           <span>
-            © 2026 CITY POP. {t('تصوّر مقدّم من مفيد.', 'A concept by MUFEED.')}
+            © 2026 CITY POP.{' '}
+            {t('شركة مفيد × الاستديو الإبداعي', 'MUFEED × CREATIVE STUDIO')}
           </span>
           <span>
             {t(
