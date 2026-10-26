@@ -19,6 +19,8 @@ export type Zone = {
   color: string;
   image: MediaId;
   imageAlt: L;
+  /** Optional second concept render shown in the zone dialog (cropped V06 render or film still). */
+  extraImage?: { id: MediaId; alt: L };
 };
 
 /** The six zones, in the order of V06 p7. */
@@ -46,6 +48,10 @@ export const zones: readonly Zone[] = [
       ar: 'تصوّر لمنطقة ذا هب المضيئة',
       en: 'Concept render of The Hub',
     },
+    extraImage: {
+      id: 'concept-hub-plaza',
+      alt: { ar: 'تصوّر لساحة ذا هب بين واجهات المتاجر الزجاجية المضيئة', en: 'Concept render of The Hub plaza between lit glass storefronts' },
+    },
   },
   {
     id: 'social',
@@ -70,6 +76,10 @@ export const zones: readonly Zone[] = [
     imageAlt: {
       ar: 'تصوّر لممشى سوشال بوب',
       en: 'Concept render of the Social POP promenade',
+    },
+    extraImage: {
+      id: 'concept-promenade',
+      alt: { ar: 'تصوّر لممشى سوشال بوب وأكشاكه المضيئة', en: 'Concept render of the Social POP promenade and its lit kiosks' },
     },
   },
   {
@@ -96,6 +106,10 @@ export const zones: readonly Zone[] = [
       ar: 'تصوّر لمنطقة الأطفال تايني بوب',
       en: 'Concept render of the Tiny POP kids’ zone',
     },
+    extraImage: {
+      id: 'concept-tiny-town',
+      alt: { ar: 'تصوّر علوي لمنطقة الأطفال والألعاب الهوائية', en: 'Aerial concept render of the kids’ zone and inflatables' },
+    },
   },
   {
     id: 'fnb',
@@ -121,6 +135,10 @@ export const zones: readonly Zone[] = [
       ar: 'تصوّر لمنطقة المطاعم والمقاهي',
       en: 'Concept render of the F&B POP dining zone',
     },
+    extraImage: {
+      id: 'concept-cafe',
+      alt: { ar: 'تصوّر لمقهى بطابقين وجلسات علوية', en: 'Concept still of a two-storey café with a rooftop terrace' },
+    },
   },
   {
     id: 'stage',
@@ -144,6 +162,10 @@ export const zones: readonly Zone[] = [
     imageAlt: {
       ar: 'تصوّر لمسرح ستيج بوب',
       en: 'Concept render of the Stage POP venue',
+    },
+    extraImage: {
+      id: 'concept-stage',
+      alt: { ar: 'تصوّر للمسرح المفتوح وجلسات الطعام أمامه', en: 'Concept render of the open-air stage with dining in front' },
     },
   },
   {

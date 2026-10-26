@@ -40,6 +40,18 @@ export const visitorsCopy = {
       ar: 'اثنا عشر مليون مستخدم يتسوقون خلف الشاشة.',
       en: 'Twelve million people shop from behind a screen.',
     },
+    /** The same V06 p2 figure, split for the large-number layout. */
+    statFigure: { ar: '12', en: '12' },
+    statUnit: { ar: 'مليون', en: 'million' },
+    statLabel: {
+      ar: 'مستخدم يتسوقون خلف الشاشة',
+      en: 'people shop from behind a screen',
+    },
+    compareTitle: { ar: 'من الشاشة إلى الواقع', en: 'From screen to reality' },
+    realityImageAlt: {
+      ar: 'تصوّر مبدئي لزوار يتجولون في ممشى سيتي بوب المضيء',
+      en: 'Concept render of visitors walking along the lit City Pop promenade',
+    },
     title: {
       ar: 'بدل أن تتصفح العالم من خلف الشاشة، تدخل إليه، تمشي بين تفاصيله، وتصبح جزءًا منه.',
       en: 'Instead of scrolling through the world, step into it, walk through it and become part of it.',
@@ -115,9 +127,20 @@ export const visitorsCopy = {
     },
     open: { ar: 'استكشف', en: 'Explore' },
     featuresLabel: { ar: 'ماذا ستجد', en: 'What you will find' },
+    zoneLabel: { ar: 'المنطقة', en: 'Zone' },
+    listLabel: { ar: 'المناطق الست', en: 'The six zones' },
+    swipeHint: { ar: 'اسحب لاستعراض المناطق الست', en: 'Swipe to see all six zones' },
+    previous: { ar: 'المنطقة السابقة', en: 'Previous zone' },
+    next: { ar: 'المنطقة التالية', en: 'Next zone' },
   },
   hub: {
     eyebrow: { ar: 'ذا هب', en: 'Inside The Hub' },
+    offersTitle: { ar: 'العروض', en: 'The offers' },
+    duration: {
+      figure: { ar: '20–30', en: '20–30' },
+      unit: { ar: 'دقيقة', en: 'min' },
+      label: { ar: 'مدة كل جلسة', en: 'per session' },
+    },
     title: {
       ar: 'ليست عروضًا ثابتة، بل سبب جديد للزيارة في كل مرة',
       en: 'Not fixed offers, but a new reason to visit every time',
@@ -236,7 +259,85 @@ export const visitorsCopy = {
         ar: 'تصوّر جدار المنتجات التفاعلي مع رمز QR',
         en: 'Concept render of the interactive product wall with a QR code',
       },
+      flowLabel: { ar: 'أربع خطوات من التجربة إلى الشراء', en: 'Four steps from trying to buying' },
     },
+  },
+  gallery: {
+    eyebrow: { ar: 'تصوّرات مبدئية', en: 'Concept visuals' },
+    title: { ar: 'لمحة من أجواء المدينة', en: 'A glimpse of the city' },
+    lead: {
+      ar: 'تصوّرات فنية مبدئية لأجواء سيتي بوب المقترحة، وقد يختلف التنفيذ النهائي عنها.',
+      en: 'Early artist’s visuals of the proposed City Pop atmosphere. The final build may differ.',
+    },
+    open: { ar: 'عرض بحجم أكبر', en: 'View larger' },
+    previous: { ar: 'الصورة السابقة', en: 'Previous image' },
+    next: { ar: 'الصورة التالية', en: 'Next image' },
+    of: { ar: 'من', en: 'of' },
+    items: [
+      {
+        image: 'concept-arrival',
+        zone: null,
+        caption: { ar: 'الممشى الرئيسي بعد البوابة', en: 'The main promenade past the gate' },
+        alt: {
+          ar: 'زوار يتجولون في ممشى واسع بأرضية لامعة، تحيط به جداريات ملوّنة وواجهات مضيئة بالنيون',
+          en: 'Visitors stroll along a wide, glossy promenade framed by colourful murals and neon-lit frontages',
+        },
+      },
+      {
+        image: 'concept-cafe',
+        zone: 'fnb',
+        caption: { ar: 'مقهى بطابقين وجلسات علوية', en: 'A two-storey café with a rooftop terrace' },
+        alt: {
+          ar: 'مقهى من حاويات خضراء بدرج خارجي يصعد إلى جلسات علوية تحت مظلة مضاءة بالمصابيح',
+          en: 'A green container café with an outdoor staircase up to a rooftop terrace under a lit canopy',
+        },
+      },
+      {
+        image: 'concept-hub-plaza',
+        zone: 'hub',
+        caption: { ar: 'ساحة بين واجهات المتاجر', en: 'A plaza between the storefronts' },
+        alt: {
+          ar: 'ساحة تتوسطها جلسة دائرية مزروعة، وحولها واجهات متاجر زجاجية مضيئة',
+          en: 'A plaza with a round planted seating island, surrounded by lit glass storefronts',
+        },
+      },
+      {
+        image: 'concept-promenade',
+        zone: 'social',
+        caption: { ar: 'ممشى الأكشاك والمتاجر الصغيرة', en: 'The kiosk and boutique promenade' },
+        alt: {
+          ar: 'ممشى ليلي تصطف على جانبه أكشاك ومتاجر صغيرة من الحاويات، ويتجول فيه الزوار',
+          en: 'A night-time promenade lined with container kiosks and small boutiques, busy with visitors',
+        },
+      },
+      {
+        image: 'concept-tiny-town',
+        zone: 'tiny',
+        caption: { ar: 'منطقة الأطفال من الأعلى', en: 'The kids’ zone from above' },
+        alt: {
+          ar: 'منظر علوي لألعاب هوائية ملوّنة ومبنى مخصص للأطفال، وأمامهما أكشاك وجلسات خارجية',
+          en: 'An aerial view of colourful inflatables and a kids’ building, with kiosks and outdoor seating in front',
+        },
+      },
+      {
+        image: 'concept-stage',
+        zone: 'stage',
+        caption: { ar: 'المسرح المفتوح وجلسات الطعام أمامه', en: 'The open-air stage with dining in front' },
+        alt: {
+          ar: 'مسرح مفتوح بشاشات مضيئة وإضاءة ملونة، وأمامه جلسات طعام وأكشاك',
+          en: 'An open-air stage with glowing screens and coloured lights, with dining tables and kiosks in front',
+        },
+      },
+      {
+        image: 'concept-oud',
+        zone: 'social',
+        caption: { ar: 'عرض حيّ على العود', en: 'A live oud performance' },
+        alt: {
+          ar: 'عازف عود بالزي السعودي يعزف أمام الميكروفون في أمسية مضاءة',
+          en: 'An oud player in Saudi dress performs at a microphone on a lit evening',
+        },
+      },
+    ],
   },
   map: {
     eyebrow: { ar: 'المخطط العام', en: 'The site' },

@@ -138,6 +138,75 @@ export const media = {
       400
     ],
     "fallback": "mufeed-logo-200.png"
+  },
+  "concept-arrival": {
+    "width": 1136,
+    "height": 639,
+    "widths": [
+      480,
+      960,
+      1136
+    ],
+    "fallback": "concept-arrival-960.jpg"
+  },
+  "concept-hub-plaza": {
+    "width": 1060,
+    "height": 551,
+    "widths": [
+      480,
+      960,
+      1060
+    ],
+    "fallback": "concept-hub-plaza-960.jpg"
+  },
+  "concept-promenade": {
+    "width": 1140,
+    "height": 641,
+    "widths": [
+      480,
+      960,
+      1140
+    ],
+    "fallback": "concept-promenade-960.jpg"
+  },
+  "concept-oud": {
+    "width": 1920,
+    "height": 1080,
+    "widths": [
+      480,
+      960,
+      1440,
+      1920
+    ],
+    "fallback": "concept-oud-960.jpg"
+  },
+  "concept-cafe": {
+    "width": 810,
+    "height": 870,
+    "widths": [
+      480,
+      810
+    ],
+    "fallback": "concept-cafe-480.jpg"
+  },
+  "concept-tiny-town": {
+    "width": 972,
+    "height": 547,
+    "widths": [
+      480,
+      972
+    ],
+    "fallback": "concept-tiny-town-480.jpg"
+  },
+  "concept-stage": {
+    "width": 1380,
+    "height": 776,
+    "widths": [
+      480,
+      960,
+      1380
+    ],
+    "fallback": "concept-stage-960.jpg"
   }
 } as const;
 

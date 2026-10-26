@@ -14,6 +14,13 @@
     { "id": "masterplan-cad", "src": "masterplan-cad.jpg", "widths": [1280, 2048, 4096] },
     { "id": "masterplan-zoned", "src": "masterplan-zoned.png", "widths": [960, 1920, 3560] },
     { "id": "wordmark", "src": "wordmark.png", "widths": [240, 480], "alpha": true },
-    { "id": "mufeed-logo", "src": "mufeed-logo.png", "widths": [200, 400], "alpha": true }
+    { "id": "mufeed-logo", "src": "mufeed-logo.png", "widths": [200, 400], "alpha": true },
+    { "id": "concept-arrival", "src": "renders/v06-p12-entrance-gate-riyadh.jpg", "crop": [0, 290, 1136, 639], "widths": [480, 960, 1136] },
+    { "id": "concept-hub-plaza", "src": "renders/v06-p13-hub-plaza-planter.jpg", "crop": [380, 390, 1060, 551], "widths": [480, 960, 1060] },
+    { "id": "concept-promenade", "src": "renders/v06-p16-promenade-wayfinding.jpg", "crop": [0, 200, 1140, 641], "widths": [480, 960, 1140] },
+    { "id": "concept-oud", "src": "video/03-oud-performer.jpg", "widths": [480, 960, 1440, 1920] },
+    { "id": "concept-cafe", "src": "video/04-bloom-cafe.jpg", "crop": [870, 30, 810, 870], "widths": [480, 810] },
+    { "id": "concept-tiny-town", "src": "renders/v06-p19-aerial-tiny-town-boutiques.jpg", "crop": [700, 150, 972, 547], "widths": [480, 972] },
+    { "id": "concept-stage", "src": "renders/v06-p20-citypop-stage-plaza.jpg", "crop": [0, 90, 1380, 776], "widths": [480, 960, 1380] }
   ]
 }

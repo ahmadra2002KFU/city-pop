@@ -1,82 +1,371 @@
 .section {
+  position: relative;
   padding-block: var(--space-9);
+}
+
+/* Opening: the deck's "So what if?" question beside its one big figure. */
+.opening {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-7);
+}
+
+.question {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--pink);
+  font-size: var(--step-1);
+  font-weight: 800;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient);
+}
+
+.title {
+  max-width: 22ch;
+  font-size: var(--step-4);
+}
+
+.stat {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  isolation: isolate;
+}
+
+/* Vertical neon stripes, the backdrop of the deck's opening slides. */
+.stat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--radius-lg);
+  background: repeating-linear-gradient(
+    90deg,
+    rgb(46 151 228 / 0.22) 0 2px,
+    transparent 2px 22px,
+    rgb(152 122 212 / 0.2) 22px 24px,
+    transparent 24px 44px,
+    rgb(255 182 195 / 0.18) 44px 46px,
+    transparent 46px 66px
+  );
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+.figure {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.number {
+  font-size: clamp(6rem, 3.5rem + 11vw, 12.5rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 28px rgb(152 122 212 / 0.35));
+}
+
+.unit {
+  font-size: var(--step-3);
+  font-weight: 800;
+}
+
+.statLabel {
+  max-width: 18ch;
+  color: var(--text-muted);
+  font-size: var(--step-2);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+}
+
+/* Screen to reality */
+.compareTitle {
+  margin-block: var(--space-8) var(--space-5);
+  font-size: var(--step-3);
 }
 
 .compare {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: minmax(0, 0.8fr) auto minmax(0, 1.35fr);
+  align-items: stretch;
   gap: var(--space-4);
 }
 
-.column {
+.screen,
+.reality {
   display: grid;
   align-content: start;
-  gap: var(--space-4);
-  padding: var(--space-6);
-  border: 1px solid var(--line);
+  gap: var(--space-5);
+  padding: var(--space-5);
   border-radius: var(--radius-lg);
+}
+
+.screen {
+  border: 1px solid var(--line);
   background: var(--bg-raised);
 }
 
-.column[data-highlight='true'] {
+.reality {
   border: 1px solid transparent;
   background:
-    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
+    linear-gradient(var(--surface), var(--surface)) padding-box,
     var(--gradient) border-box;
+  box-shadow: 0 0 60px rgb(152 122 212 / 0.18);
 }
 
-.column h3 {
+.device {
+  position: relative;
+  justify-self: center;
+  width: min(170px, 60%);
+  aspect-ratio: 9 / 17;
+  overflow: hidden;
+  border: 6px solid #1d2140;
+  border-radius: 28px;
+  background: #000;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+.deviceImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% 50%;
+  filter: grayscale(0.9) brightness(0.55) blur(1px);
+}
+
+/* Scan lines and a glass sheen: the world seen through a screen. */
+.deviceGlass {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgb(255 255 255 / 0.14), transparent 40%),
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 0.05) 0 1px, transparent 1px 4px);
+}
+
+.deviceIcon {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  translate: -50% -50%;
+  color: var(--text-subtle);
+}
+
+:global([dir='rtl']) .deviceIcon {
+  translate: 50% -50%;
+}
+
+.realityMedia {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.realityImage {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.realityMedia figcaption {
+  position: absolute;
+  inset-block-end: var(--space-3);
+  inset-inline-start: var(--space-3);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: rgb(5 6 15 / 0.75);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.points {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.points h4 {
   font-size: var(--step-1);
 }
 
-.column ol {
-  display: grid;
-  gap: var(--space-3);
-  padding: 0;
+.screen .points h4 {
   color: var(--text-muted);
 }
 
-.column li {
+.points ol {
   display: grid;
-  grid-template-columns: 2.5rem 1fr;
+  gap: var(--space-3);
+  counter-reset: point;
 }
 
-.column li span {
-  color: var(--pink);
+.points li {
+  position: relative;
+  padding-inline-start: var(--space-6);
+  counter-increment: point;
+}
+
+.points li::before {
+  content: counter(point, decimal-leading-zero);
+  position: absolute;
+  inset-inline-start: 0;
+  font-family: 'Outfit', system-ui, sans-serif;
   font-weight: 700;
 }
 
+.screen li {
+  color: var(--text-subtle);
+}
+
+.screen li::before {
+  color: var(--text-subtle);
+}
+
+.reality li {
+  color: var(--text);
+}
+
+.reality li::before {
+  color: var(--pink);
+}
+
+.bridge {
+  display: grid;
+  place-items: center;
+  align-self: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: var(--bg);
+  box-shadow: 0 0 32px rgb(152 122 212 / 0.45);
+}
+
+:global([dir='rtl']) .bridge svg {
+  transform: scaleX(-1);
+}
+
+/* Motivations: the cover's "Shop . Play . Experience" set large. */
+.motivationsWrap {
+  margin-block-start: var(--space-8);
+}
+
 .motivationsTitle {
-  margin-block: var(--space-8) var(--space-5);
+  margin-block-end: var(--space-5);
   font-size: var(--step-2);
 }
 
 .motivations {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
-  padding: 0;
 }
 
 .motivations li {
   display: grid;
   align-content: start;
-  gap: var(--space-2);
-  padding: var(--space-5);
-  border-block-start: 2px solid var(--violet);
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  padding-inline: var(--space-5);
+  border-inline-start: 1px solid var(--line);
+}
+
+.motivations li:first-child {
+  padding-inline-start: 0;
+  border-inline-start: 0;
 }
 
 .motivations strong {
-  font-size: var(--step-2);
+  font-size: var(--step-5);
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 0 0 32px currentColor;
+}
+
+.motivations li:nth-child(1) strong {
+  color: var(--blue-bright);
+}
+
+.motivations li:nth-child(2) strong {
+  color: var(--violet);
+}
+
+.motivations li:nth-child(3) strong {
+  color: var(--pink);
 }
 
 .motivations p {
+  max-width: 30ch;
   color: var(--text-muted);
 }
 
+@media (max-width: 900px) {
+  .opening {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .compare {
+    grid-template-columns: 1fr;
+  }
+
+  .bridge {
+    justify-self: center;
+  }
+
+  .bridge svg,
+  :global([dir='rtl']) .bridge svg {
+    transform: rotate(90deg);
+  }
+
+  .screen {
+    grid-template-columns: 110px 1fr;
+    align-items: center;
+  }
+
+  .device {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .screen {
+    grid-template-columns: 1fr;
+  }
+
+  .device {
+    width: 128px;
+  }
+}
+
 @media (max-width: 760px) {
-  .compare,
   .motivations {
     grid-template-columns: 1fr;
+  }
+
+  .motivations li,
+  .motivations li:first-child {
+    padding-inline: 0;
+    border-inline-start: 0;
+    border-block-start: 1px solid var(--line);
+  }
+
+  .motivations li:first-child {
+    border-block-start: 0;
   }
 }

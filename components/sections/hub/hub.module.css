@@ -1,90 +1,285 @@
 .section {
+  position: relative;
   padding-block: var(--space-9);
 }
 
+/* A faint wash of The Hub's legend colour behind the section. */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    60% 40% at 85% 10%,
+    color-mix(in srgb, var(--zone) 16%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.block + .block {
+  margin-block-start: var(--space-8);
+}
+
+.blockTitle {
+  margin-block-end: var(--space-3);
+  font-size: var(--step-3);
+}
+
+.blockLead {
+  max-width: 40rem;
+  margin-block-end: var(--space-5);
+  color: var(--text-muted);
+}
+
+/* Offers: shelf labels with a lit edge in the zone colour. */
 .offers {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-4);
-  padding: 0;
 }
 
 .offers li {
+  position: relative;
   display: grid;
   align-content: start;
   gap: var(--space-2);
   padding: var(--space-5);
+  padding-block-start: calc(var(--space-5) + 4px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--bg-raised);
 }
 
-.offers h3 {
+.offers li::before {
+  content: '';
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline: var(--space-5);
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--zone);
+  box-shadow: 0 0 16px var(--zone);
+}
+
+.offers strong {
   font-size: var(--step-1);
+  line-height: var(--leading-tight);
 }
 
-.offers p,
-.subLead,
-.list span,
-.steps span {
+.offers p {
   color: var(--text-muted);
+  font-size: var(--step--1);
 }
 
-.split {
+/* Workshop: a 60-minute dial beside the four sessions. */
+.workshop {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: minmax(220px, 300px) 1fr;
+  align-items: center;
   gap: var(--space-7);
-  margin-block-start: var(--space-8);
 }
 
-.subTitle {
-  font-size: var(--step-2);
-}
-
-.subLead {
-  margin-block: var(--space-2) var(--space-5);
-}
-
-.list,
-.steps {
+.dial {
+  position: relative;
   display: grid;
-  gap: var(--space-3);
-  padding: 0;
+  place-items: center;
+  aspect-ratio: 1;
 }
 
-.list li,
-.steps li {
+.dialSvg {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.dialTrack {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 8;
+}
+
+.dialTick {
+  stroke: var(--text-subtle);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.dialRange {
+  fill: none;
+  stroke: url(#hub-dial-gradient);
+  stroke-width: 8;
+  opacity: 0.4;
+}
+
+.dialCore {
+  fill: none;
+  stroke: url(#hub-dial-gradient);
+  stroke-width: 8;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgb(152 122 212 / 0.7));
+}
+
+.duration {
+  grid-area: 1 / 1;
   display: grid;
-  gap: var(--space-1);
-  padding-block-end: var(--space-3);
-  border-block-end: 1px solid var(--line);
+  justify-items: center;
+  text-align: center;
+  line-height: 1.1;
 }
 
-.steps li {
-  grid-template-columns: 2.5rem 1fr;
+.durationFigure {
+  font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
-.steps li > span:first-child {
-  grid-row: span 2;
-  color: var(--pink);
+.durationUnit {
+  font-size: var(--step-1);
   font-weight: 700;
 }
 
-.image {
+.durationLabel {
+  margin-block-start: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.workshops {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3) var(--space-5);
+}
+
+.workshops li {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-3);
+  border-block-start: 1px solid var(--line);
+}
+
+.workshops span {
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+/* Market wall: the FAST POP render beside the four-step flow. */
+.wall {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #000;
+  box-shadow: 0 0 80px rgb(152 122 212 / 0.12);
+}
+
+.wallMedia {
+  position: relative;
+}
+
+.wallImage {
   width: 100%;
-  margin-block-start: var(--space-5);
   border-radius: var(--radius);
+}
+
+.wallMedia figcaption {
+  margin-block-start: var(--space-2);
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+}
+
+.flow {
+  display: grid;
+}
+
+.flow li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: var(--space-4);
+  padding-block-end: var(--space-5);
+}
+
+.flow li:last-child {
+  padding-block-end: 0;
+}
+
+/* The line that carries the visitor from one step to the next. */
+.flow li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  inset-block: 52px 0;
+  inset-inline-start: 25px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--violet), var(--pink));
+  opacity: 0.6;
+}
+
+.stepIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background:
+    linear-gradient(#0b0d1c, #0b0d1c) padding-box,
+    var(--gradient) border-box;
+  color: var(--pink);
+  box-shadow: 0 0 20px rgb(152 122 212 / 0.35);
+}
+
+.stepBody {
+  display: grid;
+  gap: var(--space-1);
+  padding-block-start: var(--space-1);
+}
+
+.stepNumber {
+  color: var(--pink);
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.stepBody strong {
+  font-size: var(--step-1);
+}
+
+.stepBody span:last-child {
+  color: var(--text-muted);
 }
 
 @media (max-width: 1000px) {
   .offers {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .wall {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 760px) {
   .offers,
-  .split {
+  .workshops {
     grid-template-columns: 1fr;
+  }
+
+  .workshop {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .dial {
+    width: min(220px, 70%);
+    justify-self: center;
+  }
+
+  .wall {
+    padding: var(--space-4);
   }
 }
