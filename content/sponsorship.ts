@@ -76,10 +76,8 @@ const posts = (value: number) => ({
       ? { ar: 'منشور', en: 'post' }
       : { ar: 'منشورات', en: 'posts' },
 });
-const tickets = (value: number) => ({
-  count: value,
-  unit: { ar: 'تذاكر', en: 'tickets' },
-});
+/** Spons p24 prints ticket quantities as bare numbers; the row label names the unit. */
+const tickets = (value: number) => ({ count: value });
 
 export const shareNote: L = {
   ar: 'النسبة المئوية تمثّل حصة الراعي من إجمالي مساحة الشعارات المتاحة في كل نقطة تماس.',

@@ -1,0 +1,320 @@
+/* Full benefit matrix. `--tier` is set per tier column. */
+.compare {
+  margin-block-start: var(--space-8);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-4);
+}
+
+.title {
+  font-size: var(--step-3);
+}
+
+.lead {
+  margin-block-start: var(--space-2);
+  color: var(--text-muted);
+}
+
+.toggleAll {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.toggleAll:hover {
+  background: rgb(255 255 255 / 0.06);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legendMark {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.note {
+  display: flex;
+  gap: var(--space-2);
+  margin-block: var(--space-3) var(--space-5);
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+}
+
+.note > span {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+.yes {
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--tier, var(--pink));
+}
+
+.no {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--text-subtle);
+}
+
+.value {
+  color: var(--tier, var(--text));
+  font-weight: 700;
+}
+
+/* Tier switcher: only used at 760px and below. */
+.switcher {
+  display: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Floated so the legend stays inside the fieldset's padding when it sticks. */
+.switcherLegend {
+  float: inline-start;
+  width: 100%;
+  padding: 0;
+  margin-block-end: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.segments {
+  clear: both;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--bg-raised);
+}
+
+.segment {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
+}
+
+.segment input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.segment:has(input:checked) {
+  background: var(--tier);
+  color: #11101c;
+}
+
+.segment:has(input:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.showing {
+  margin-block-start: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table th,
+.table td {
+  padding: var(--space-3) var(--space-4);
+  border-block-end: 1px solid var(--line);
+  text-align: start;
+  vertical-align: middle;
+}
+
+.table td {
+  width: 17%;
+  text-align: center;
+}
+
+.table thead th {
+  position: sticky;
+  inset-block-start: var(--header-height);
+  z-index: 2;
+  background: var(--surface);
+}
+
+.benefitHead {
+  border-start-start-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.tierHead {
+  width: 17%;
+  border-block-end: 2px solid var(--tier);
+}
+
+.table .tierHead {
+  text-align: center;
+}
+
+.tierHead:last-child {
+  border-start-end-radius: var(--radius);
+}
+
+.tierName {
+  display: block;
+  color: var(--tier);
+  font-size: var(--step-1);
+  font-weight: 800;
+}
+
+.tierPrice {
+  display: block;
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+  font-weight: 500;
+}
+
+.groupRow > * {
+  padding-block: 0;
+  background: var(--bg-raised);
+}
+
+.groupHead {
+  padding-inline: 0;
+}
+
+.groupButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 52px;
+  padding-inline: var(--space-3);
+  border: 0;
+  background: none;
+  color: var(--pink);
+  font-weight: 800;
+  text-align: start;
+}
+
+.groupButton:hover {
+  color: var(--text);
+}
+
+.chevron,
+.chevronOpen {
+  flex: none;
+  transition: transform var(--duration) var(--ease);
+}
+
+.chevron {
+  transform: rotate(-90deg);
+}
+
+:global([dir='rtl']) .chevron {
+  transform: rotate(90deg);
+}
+
+.groupCount {
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.groupCount[data-full='true'] {
+  color: var(--tier);
+}
+
+.rowHead {
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.table tbody tr[data-benefit-row]:hover > * {
+  background: rgb(255 255 255 / 0.03);
+}
+
+@media (max-width: 760px) {
+  .switcher {
+    position: sticky;
+    inset-block-start: var(--header-height);
+    z-index: 3;
+    display: block;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: var(--space-3) var(--gutter);
+    background: rgb(5 6 15 / 0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .table [data-off='true'] {
+    display: none;
+  }
+
+  .table thead th {
+    position: static;
+  }
+
+  .table th,
+  .table td {
+    padding: var(--space-3);
+  }
+
+  .table td,
+  .tierHead {
+    width: 34%;
+  }
+
+  .tierHead {
+    border-start-end-radius: var(--radius);
+  }
+}

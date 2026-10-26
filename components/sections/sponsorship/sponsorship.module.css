@@ -1,158 +1,329 @@
+/*
+ * Sponsorship tiers styled as festival passes: a ticket stub with a perforated
+ * tear line, and a 39-segment meter that shows how much of the deck's benefit
+ * matrix each tier unlocks. `--tier` is the tier colour from content/sponsorship.ts.
+ */
 .section {
   padding-block: var(--space-9);
 }
 
 .tiers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
-  padding: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  align-items: stretch;
 }
 
 .tier {
   display: grid;
-  align-content: start;
-  gap: var(--space-3);
-  padding: var(--space-6);
-  border: 1px solid var(--line);
-  border-block-start: 3px solid var(--tier);
+}
+
+.pass {
+  --pad: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--pad);
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
-  background: var(--bg-raised);
+  background:
+    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
+    linear-gradient(
+        165deg,
+        color-mix(in srgb, var(--tier) 70%, transparent),
+        var(--line) 45%,
+        var(--line)
+      )
+      border-box;
+}
+
+/* Platinum: brighter edge and a soft halo, no extra ornament. */
+.tier[data-tier='platinum'] .pass {
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgb(152 122 212 / 0.16), transparent 70%) padding-box,
+    linear-gradient(#0d0c22, #0b0d1c) padding-box,
+    linear-gradient(160deg, var(--tier), var(--violet) 40%, rgb(46 151 228 / 0.5)) border-box;
+  box-shadow: 0 40px 90px -50px rgb(152 122 212 / 0.7);
+}
+
+.passTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--tier) 14%, transparent);
+  color: var(--tier);
 }
 
 .badge {
-  justify-self: start;
   padding: var(--space-1) var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--tier) 55%, transparent);
   border-radius: var(--radius-pill);
-  background: rgb(255 255 255 / 0.08);
   color: var(--tier);
   font-size: var(--step--1);
   font-weight: 700;
 }
 
-.tier h3 {
+.name {
   color: var(--tier);
   font-size: var(--step-3);
 }
 
 .pitch {
+  min-height: 3.3em;
   color: var(--text-muted);
 }
 
 .price {
-  display: grid;
-  gap: var(--space-1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--space-2);
 }
 
 .price strong {
-  font-size: var(--step-4);
-  line-height: 1;
+  font-size: clamp(2.1rem, 1.6rem + 1.6vw, 2.9rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
-.price span {
+.currency {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.vat {
+  flex-basis: 100%;
   color: var(--text-subtle);
   font-size: var(--step--1);
 }
 
-.meta {
+.slots {
   display: flex;
-  gap: var(--space-6);
-  margin: 0;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 700;
 }
 
-.meta dt {
+.pips {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.pips span {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--tier);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--tier) 60%, transparent);
+}
+
+/* Ticket tear line: notches cut into both card edges. */
+.perforation {
+  position: relative;
+  margin-inline: calc(-1 * var(--pad));
+  border-block-start: 2px dashed var(--line-strong);
+}
+
+.perforation::before,
+.perforation::after {
+  content: '';
+  position: absolute;
+  inset-block-start: -12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.perforation::before {
+  inset-inline-start: -12px;
+}
+
+.perforation::after {
+  inset-inline-end: -12px;
+}
+
+.meter {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.meterLabel {
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.meterBar {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  height: 10px;
+}
+
+.meterBar span {
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.09);
+}
+
+.meterBar span[data-on='true'] {
+  background: var(--tier);
+}
+
+.highlights {
+  display: grid;
+  gap: var(--space-3);
+  flex-grow: 1;
+  align-content: start;
+}
+
+.highlightsTitle {
   color: var(--text-subtle);
   font-size: var(--step--1);
-}
-
-.meta dd {
-  margin: 0;
-  font-size: var(--step-1);
   font-weight: 700;
 }
 
-.choose {
-  color: var(--pink);
+.highlights ul {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.highlights li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: var(--space-2);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.tick {
+  margin-block-start: 0.15em;
+  color: var(--tier);
+}
+
+.highlightValue {
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--tier) 14%, transparent);
+  color: var(--tier);
   font-weight: 700;
+  white-space: nowrap;
 }
 
-.subTitle {
-  margin-block: var(--space-8) var(--space-4);
-  font-size: var(--step-2);
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  margin-block-start: var(--space-2);
+  padding-inline: var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--tier) 60%, transparent);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
 }
 
+.cta:hover {
+  background: color-mix(in srgb, var(--tier) 16%, transparent);
+}
+
+.tier[data-tier='platinum'] .cta {
+  border-color: transparent;
+  background: var(--tier);
+  color: #140f26;
+}
+
+.tier[data-tier='platinum'] .cta:hover {
+  background: color-mix(in srgb, var(--tier) 85%, white);
+}
+
+:global([dir='rtl']) .flip {
+  transform: scaleX(-1);
+}
+
+/* Every-tier strip */
 .shared {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-3);
-  padding: 0;
-  color: var(--text-muted);
+  gap: var(--space-4);
+  margin-block-start: var(--space-7);
+  padding: var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-soft);
 }
 
-.shared li {
+.sharedTitle {
+  font-size: var(--step-1);
+}
+
+.sharedList {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-2);
-  align-items: flex-start;
 }
 
-.yes {
+.sharedList li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: rgb(5 6 15 / 0.55);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.sharedList svg {
   flex: none;
   color: var(--pink);
 }
 
-.no {
-  color: var(--text-subtle);
+@media (max-width: 760px) {
+  .sharedList {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .sharedList li {
+    align-items: flex-start;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 0.95rem;
+  }
+
+  .sharedList svg {
+    margin-block-start: 0.3em;
+  }
 }
 
-.tableWrap {
-  position: relative;
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-
-.table {
-  width: 100%;
-  min-width: 640px;
-  border-collapse: collapse;
-}
-
-.table th,
-.table td {
-  padding: var(--space-3) var(--space-4);
-  border-block-end: 1px solid var(--line);
-  text-align: start;
-}
-
-.table thead th {
-  position: sticky;
-  inset-block-start: 0;
-  background: var(--surface);
-}
-
-.table td {
-  text-align: center;
-  font-weight: 700;
-}
-
-.table tbody th {
-  font-weight: 500;
-}
-
-.groupRow th {
-  background: var(--surface);
-  color: var(--pink);
-  font-weight: 700;
-}
-
-.note {
-  margin-block-start: var(--space-4);
-  color: var(--text-subtle);
-  font-size: var(--step--1);
-}
-
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .tiers {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .pitch {
+    min-height: 0;
   }
 }
