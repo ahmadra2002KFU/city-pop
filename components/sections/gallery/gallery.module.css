@@ -1,0 +1,217 @@
+.section {
+  padding-block: var(--space-9);
+}
+
+/* A night-time contact sheet: one wide establishing shot, then details. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: clamp(150px, 13vw, 200px);
+  grid-auto-flow: dense;
+  gap: var(--space-3);
+}
+
+.item {
+  display: flex;
+  min-width: 0;
+}
+
+.item:nth-child(1) {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+
+.item:nth-child(2) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.item:nth-child(3),
+.item:nth-child(4),
+.item:nth-child(5) {
+  grid-column: span 2;
+}
+
+.item:nth-child(6),
+.item:nth-child(7) {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.tile {
+  --zone: var(--violet);
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: start;
+  isolation: isolate;
+  transition:
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
+}
+
+.tile:hover,
+.tile:focus-visible {
+  border-color: var(--zone);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--zone) 35%, transparent);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 700ms var(--ease);
+}
+
+.tile:hover .image {
+  scale: 1.05;
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgb(5 6 15 / 0.95), rgb(5 6 15 / 0.55) 35%, rgb(5 6 15 / 0) 65%);
+}
+
+.caption {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline: 0;
+  display: grid;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.85);
+}
+
+.zone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: color-mix(in srgb, var(--zone) 55%, #fff);
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.zone::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--zone);
+  box-shadow: 0 0 10px var(--zone);
+}
+
+.captionText {
+  font-size: var(--step--1);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.expand {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-end: var(--space-3);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgb(5 6 15 / 0.7);
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease);
+}
+
+.tile:hover .expand,
+.tile:focus-visible .expand {
+  opacity: 1;
+}
+
+.note {
+  margin-block-start: var(--space-3);
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+}
+
+/* Lightbox */
+.lightbox {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.lightboxImage {
+  width: 100%;
+  max-height: calc(100dvh - 12rem);
+  object-fit: contain;
+  border-radius: var(--radius);
+  background: #000;
+}
+
+.lightboxBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.lightboxMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1) var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  text-align: center;
+}
+
+.navButton {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.navButton:hover {
+  background: var(--surface-2);
+}
+
+@media (hover: none) {
+  .expand {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: clamp(150px, 26vw, 220px);
+  }
+
+  .item:nth-child(n) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .item:nth-child(1),
+  .item:nth-child(5) {
+    grid-column: span 2;
+  }
+
+  .item:nth-child(1),
+  .item:nth-child(2) {
+    grid-row: span 2;
+  }
+}

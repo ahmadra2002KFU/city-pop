@@ -5,6 +5,7 @@ import { Hero } from '@/components/sections/hero/Hero';
 import { Concept } from '@/components/sections/concept/Concept';
 import { Zones } from '@/components/sections/zones/Zones';
 import { HubInside } from '@/components/sections/hub/HubInside';
+import { Gallery } from '@/components/sections/gallery/Gallery';
 import { SiteMap } from '@/components/sections/site-map/SiteMap';
 import { ReturnReasons } from '@/components/sections/return/ReturnReasons';
 import { VisitInfo } from '@/components/sections/visit/VisitInfo';
@@ -20,6 +21,7 @@ export function VisitorsPage({ lang }: { lang: Lang }) {
         <Concept lang={lang} />
         <Zones lang={lang} />
         <HubInside lang={lang} />
+        <Gallery lang={lang} />
         <SiteMap lang={lang} variant="visitors" />
         <ReturnReasons lang={lang} />
         <VisitInfo lang={lang} />
