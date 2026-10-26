@@ -207,6 +207,14 @@ export const media = {
       1380
     ],
     "fallback": "concept-stage-960.jpg"
+  },
+  "og-card": {
+    "width": 3360,
+    "height": 1764,
+    "widths": [
+      1200
+    ],
+    "fallback": "og-card-1200.jpg"
   }
 } as const;
 

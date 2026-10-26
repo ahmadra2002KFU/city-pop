@@ -44,8 +44,9 @@ for (const entry of config.images) {
   };
 }
 
-for (const file of readdirSync(outDir)) {
-  if (!expected.has(file)) rmSync(resolve(outDir, file));
+// Remove stale image variants; subfolders such as media/video are managed separately.
+for (const entry of readdirSync(outDir, { withFileTypes: true })) {
+  if (entry.isFile() && !expected.has(entry.name)) rmSync(resolve(outDir, entry.name));
 }
 
 const total = [...expected].reduce((sum, file) => sum + statSync(resolve(outDir, file)).size, 0);

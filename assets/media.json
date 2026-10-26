@@ -21,6 +21,7 @@
     { "id": "concept-oud", "src": "video/03-oud-performer.jpg", "widths": [480, 960, 1440, 1920] },
     { "id": "concept-cafe", "src": "video/04-bloom-cafe.jpg", "crop": [870, 30, 810, 870], "widths": [480, 810] },
     { "id": "concept-tiny-town", "src": "renders/v06-p19-aerial-tiny-town-boutiques.jpg", "crop": [700, 150, 972, 547], "widths": [480, 972] },
-    { "id": "concept-stage", "src": "renders/v06-p20-citypop-stage-plaza.jpg", "crop": [0, 90, 1380, 776], "widths": [480, 960, 1380] }
+    { "id": "concept-stage", "src": "renders/v06-p20-citypop-stage-plaza.jpg", "crop": [0, 90, 1380, 776], "widths": [480, 960, 1380] },
+    { "id": "og-card", "src": "gate.jpg", "crop": [117, 242, 3360, 1764], "widths": [1200], "quality": 82 }
   ]
 }
