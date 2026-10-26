@@ -1,6 +1,7 @@
 import type { Lang } from '@/content/i18n';
 import { Header } from '@/components/site/Header';
 import { Footer } from '@/components/site/Footer';
+import { StructuredData } from '@/components/site/StructuredData';
 import { Hero } from '@/components/sections/hero/Hero';
 import { Concept } from '@/components/sections/concept/Concept';
 import { Zones } from '@/components/sections/zones/Zones';
@@ -26,6 +27,7 @@ export function VisitorsPage({ lang }: { lang: Lang }) {
         <PartnerBand lang={lang} />
       </main>
       <Footer lang={lang} page="visitors" />
+      <StructuredData lang={lang} page="visitors" />
     </>
   );
 }

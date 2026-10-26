@@ -14,6 +14,7 @@
     { "id": "masterplan-cad", "src": "masterplan-cad.jpg", "widths": [1280, 2048, 4096] },
     { "id": "masterplan-zoned", "src": "masterplan-zoned.png", "widths": [960, 1920, 3560] },
     { "id": "wordmark", "src": "wordmark.png", "widths": [240, 480], "alpha": true },
-    { "id": "mufeed-logo", "src": "mufeed-logo.png", "widths": [200, 400], "alpha": true }
+    { "id": "mufeed-logo", "src": "mufeed-logo.png", "widths": [200, 400], "alpha": true },
+    { "id": "og-card", "src": "gate.jpg", "crop": [117, 242, 3360, 1764], "widths": [1200], "quality": 82 }
   ]
 }

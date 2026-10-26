@@ -242,13 +242,50 @@ export const partnersCopy = {
     },
     unitType: { ar: 'نوع الوحدة', en: 'Unit type' },
     unitNumber: { ar: 'رقم الوحدة (اختياري)', en: 'Unit number (optional)' },
+    anyUnit: { ar: 'أي وحدة', en: 'Any unit' },
     tier: { ar: 'فئة الرعاية', en: 'Sponsorship tier' },
     name: { ar: 'الاسم', en: 'Name' },
     company: { ar: 'الشركة أو العلامة التجارية', en: 'Company or brand' },
     email: { ar: 'البريد الإلكتروني', en: 'Email' },
     phone: { ar: 'رقم الجوال', en: 'Mobile number' },
     message: { ar: 'رسالتك', en: 'Message' },
+    required: { ar: 'مطلوب', en: 'required' },
+    optional: { ar: 'اختياري', en: 'optional' },
+    phoneHint: {
+      ar: 'مثال: 05XXXXXXXX أو ‎+9665XXXXXXXX',
+      en: 'For example 05XXXXXXXX or +9665XXXXXXXX',
+    },
+    errors: {
+      nameRequired: { ar: 'اكتب اسمك.', en: 'Enter your name.' },
+      emailRequired: {
+        ar: 'اكتب بريدك الإلكتروني لنتمكن من الرد عليك.',
+        en: 'Enter your email so we can reply.',
+      },
+      emailInvalid: {
+        ar: 'اكتب البريد بصيغة صحيحة، مثل name@company.com.',
+        en: 'Enter an email address like name@company.com.',
+      },
+      phoneInvalid: {
+        ar: 'اكتب رقمًا من 7 إلى 15 خانة، ويمكن أن يبدأ بـ ‎+‎.',
+        en: 'Enter 7 to 15 digits; it can start with +.',
+      },
+      summary: {
+        ar: 'راجع الحقول المحددة قبل الإرسال.',
+        en: 'Check the highlighted fields before sending.',
+      },
+    },
+    selection: {
+      label: { ar: 'اختيارك', en: 'Your selection' },
+      fromLink: { ar: 'من الرابط', en: 'From your link' },
+      general: { ar: 'استفسار عام', en: 'General enquiry' },
+      unit: { ar: 'وحدة', en: 'Unit' },
+      term: { ar: 'يومًا', en: 'days' },
+      perTerm: { ar: 'للمدة كاملة', en: 'for the full term' },
+      clear: { ar: 'إلغاء الاختيار', en: 'Clear selection' },
+      cleared: { ar: 'أُلغي الاختيار.', en: 'Selection cleared.' },
+    },
     submit: { ar: 'أرسل الطلب', en: 'Send enquiry' },
+    sending: { ar: 'جارٍ الإرسال…', en: 'Sending…' },
     whatsapp: { ar: 'راسلنا عبر واتساب', en: 'Message us on WhatsApp' },
     emailUs: { ar: 'راسلنا بالبريد', en: 'Email us' },
     sent: {
@@ -259,9 +296,28 @@ export const partnersCopy = {
       ar: 'تعذّر الإرسال. حاول مجددًا أو تواصل معنا مباشرة.',
       en: 'We could not send that. Please try again or contact us directly.',
     },
+    openedWhatsapp: {
+      ar: 'فتحنا واتساب برسالة جاهزة. اضغط إرسال هناك ليصل طلبك.',
+      en: 'WhatsApp is open with your message. Press send there to reach us.',
+    },
+    openedEmail: {
+      ar: 'فتحنا تطبيق البريد برسالة جاهزة. أرسلها من هناك ليصل طلبك.',
+      en: 'Your email app is open with your message. Send it from there to reach us.',
+    },
     channelsPending: {
       ar: 'تُضاف قنوات التواصل المباشرة قريبًا.',
       en: 'Direct contact details will be added shortly.',
+    },
+    channelsPendingNote: {
+      title: { ar: 'قنوات التواصل قيد الإعداد', en: 'Contact channels are being set up' },
+      text: {
+        ar: 'لم يُربط هذا النموذج بعد بأي قناة، لذلك لن تُرسل بياناتك عند الضغط على «أرسل الطلب». ستُضاف تفاصيل التواصل قريبًا.',
+        en: 'This form is not connected to a channel yet, so pressing “Send enquiry” does not send your details anywhere. Contact details will be added shortly.',
+      },
+    },
+    notSent: {
+      ar: 'لم تُرسل بياناتك.',
+      en: 'Your details were not sent.',
     },
   },
 } as const;

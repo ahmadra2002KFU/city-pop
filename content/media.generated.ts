@@ -138,6 +138,14 @@ export const media = {
       400
     ],
     "fallback": "mufeed-logo-200.png"
+  },
+  "og-card": {
+    "width": 3360,
+    "height": 1764,
+    "widths": [
+      1200
+    ],
+    "fallback": "og-card-1200.jpg"
   }
 } as const;
 
