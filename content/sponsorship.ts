@@ -119,14 +119,14 @@ export const benefitGroups: readonly BenefitGroup[] = [
     rows: [
       {
         label: {
-          ar: 'تسمية إحدى المناطق الست باسم الراعي',
+          ar: 'الحق في تسمية إحدى المناطق الست باسم الراعي',
           en: 'Name one of the six zones after your brand',
         },
         values: [yes, no, no],
       },
       {
         label: {
-          ar: 'تسمية تفعيل داخل إحدى المناطق',
+          ar: 'الحق في تسمية تفعيل داخل إحدى المناطق',
           en: 'Name an activation inside a zone',
         },
         values: [yes, yes, no],
@@ -139,7 +139,7 @@ export const benefitGroups: readonly BenefitGroup[] = [
     rows: [
       {
         label: {
-          ar: 'مساحة عرض في منطقة SOCIAL POP بمقاس 3×3',
+          ar: 'مساحة عرض بمنطقة SOCIAL POP 3×3',
           en: '3×3 display space in SOCIAL POP',
         },
         values: [yes, yes, no],
@@ -213,7 +213,7 @@ export const benefitGroups: readonly BenefitGroup[] = [
       },
       {
         label: {
-          ar: 'ظهور فيديو إعلاني على الشاشات الداخلية',
+          ar: 'الحق في ظهور فيديو إعلاني على الشاشات الداخلية',
           en: 'Ad video on the indoor screens',
         },
         values: [yes, yes, no],
@@ -250,7 +250,7 @@ export const benefitGroups: readonly BenefitGroup[] = [
       },
       {
         label: {
-          ar: 'تفعيل عروض ترويجية على منصات الراعي',
+          ar: 'الحق بتفعيل عروض ترويجية على منصات الراعي',
           en: 'Promotional offers on your own platforms',
         },
         values: [yes, yes, yes],
@@ -283,19 +283,19 @@ export const benefitGroups: readonly BenefitGroup[] = [
         values: [share(40), share(25), share(15)],
       },
       {
-        label: { ar: 'الإدراج ضمن «عرض اليوم»', en: 'Inclusion in “Deal of the Day”' },
+        label: { ar: 'الإدراج ضمن (عرض اليوم)', en: 'Inclusion in “Deal of the Day”' },
         values: [yes, yes, yes],
       },
       {
         label: {
-          ar: 'أكواد خصومات حصرية باسم الراعي',
+          ar: 'أكواد الخصومات الحصرية باسم الراعي',
           en: 'Exclusive discount codes in your name',
         },
         values: [yes, yes, yes],
       },
       {
         label: {
-          ar: 'توزيع منتجات ترويجية داخل الموقع',
+          ar: 'الحق في توزيع منتجات ترويجية داخل الموقع',
           en: 'Distribute promotional products on site',
         },
         values: [yes, yes, yes],
@@ -346,7 +346,7 @@ export const benefitGroups: readonly BenefitGroup[] = [
         values: [yes, yes, no],
       },
       {
-        label: { ar: 'المشاركة في «ضيف الأسبوع»', en: 'A slot as “Guest of the Week”' },
+        label: { ar: 'المشاركة في (ضيف الأسبوع)', en: 'A slot as “Guest of the Week”' },
         values: [yes, yes, no],
       },
       {
@@ -361,13 +361,13 @@ export const benefitGroups: readonly BenefitGroup[] = [
     rows: [
       {
         label: {
-          ar: 'تقرير ما بعد الفعالية (زوار، تفاعل، وصول رقمي)',
+          ar: 'تقرير ما بعد الفعالية (زوار - تفاعل - وصول رقمي)',
           en: 'Post-event report (visitors, engagement, digital reach)',
         },
         values: [yes, yes, yes],
       },
       {
-        label: { ar: 'تحليل العائد على الاستثمار (ROI)', en: 'Return-on-investment analysis' },
+        label: { ar: 'تحليل العائد على الاستثمار ROI', en: 'Return-on-investment analysis' },
         values: [yes, yes, no],
       },
       {

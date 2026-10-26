@@ -29,7 +29,13 @@ npm run check:export
 
 On Windows, build from PowerShell (or set `MSYS_NO_PATHCONV=1` in Git Bash) when `NEXT_PUBLIC_BASE_PATH` is set, otherwise the base path is rewritten into a Windows path.
 
-`check:export` confirms all four routes exist with the right `lang` and section ids, that every referenced asset and every generated image variant is present, and that retired facts from the 2026-09 deck (for example 28,189 m², "one full month") never reappear.
+`check:export` confirms:
+- All four routes exist with the right `lang`, section ids, canonical and hreflang links.
+- The Open Graph image exists and its size matches its tags.
+- The Event JSON-LD parses and its dates match `content/facts.ts`.
+- `sitemap.xml`, `robots.txt` and the branded `404.html` are present.
+- Every referenced asset and every generated image variant exists.
+- Retired facts from the 2026-09 deck (for example 28,189 m², "one full month") never reappear.
 
 ## Where things live
 
@@ -42,7 +48,8 @@ On Windows, build from PowerShell (or set `MSYS_NO_PATHCONV=1` in Git Bash) when
 | `components/site/*`, `components/primitives/*` | Header, footer, document shell; shared heading, button, picture and modal |
 | `app/(ar)`, `app/(en)` | Route groups with their own root layout, so each page ships the correct `lang`/`dir` |
 | `app/styles/tokens.css` | Colours (brand and zone legend), type scale, spacing |
-| `assets/source`, `assets/media.json` | Original images; `npm run images` regenerates `public/media` and `content/media.generated.ts` |
+| `assets/source`, `assets/media.json` | Original images and crops; `npm run images` regenerates `public/media` and `content/media.generated.ts` (videos in `public/media/video` are managed by hand) |
+| `content/plan-geometry.ts`, `lib/plan-selection.ts` | Masterplan shapes in metres, traced from the V06 CAD, and the map/spaces selection store |
 
 Copy and facts change in `content/`, never inside components. Contact channels are `null` in `content/site.ts` until Mufeed supplies them; the UI hides any channel that is not set.
 
