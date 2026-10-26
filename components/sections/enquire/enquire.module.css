@@ -1,0 +1,124 @@
+.section {
+  position: relative;
+  padding-block: var(--space-9);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 760px;
+  padding: var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+}
+
+.form label {
+  display: grid;
+  gap: var(--space-2);
+  font-weight: 500;
+}
+
+.form input:not([type='radio']),
+.form select,
+.form textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.form input:focus-visible,
+.form select:focus-visible,
+.form textarea:focus-visible {
+  outline-offset: 0;
+}
+
+.interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.interests legend {
+  margin-block-end: var(--space-2);
+  font-weight: 500;
+}
+
+.interests label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+}
+
+.interests label:has(input:checked) {
+  border-color: var(--pink);
+  background: rgb(255 182 195 / 0.1);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  opacity: 0;
+}
+
+.submit {
+  justify-self: start;
+  min-height: 48px;
+  padding-inline: var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--pink);
+  color: #170c14;
+  font-weight: 700;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+}
+
+.status:empty {
+  display: none;
+}
+
+.channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-5);
+}
+
+.channels a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .form {
+    padding: var(--space-4);
+  }
+}

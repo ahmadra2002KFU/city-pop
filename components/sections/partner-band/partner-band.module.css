@@ -1,0 +1,23 @@
+.band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-block: var(--space-8);
+  padding: var(--space-7);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
+    var(--gradient) border-box;
+}
+
+.band h2 {
+  font-size: var(--step-3);
+}
+
+.band p {
+  margin-block-start: var(--space-2);
+  color: var(--text-muted);
+}

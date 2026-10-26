@@ -8,6 +8,6 @@ const nextConfig: NextConfig = {
   // basePath would prevent its prerenderer from exporting the root route.
   // An absolute prefix keeps Vinext's emitted files at _next/static on disk.
   assetPrefix: basePath ? `${siteOrigin}${basePath}` : undefined,
-  trailingSlash: true,
+  trailingSlash: false,
 };
 export default nextConfig;

@@ -1,0 +1,133 @@
+.header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 50;
+  transition:
+    background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+  border-block-end: 1px solid transparent;
+}
+
+.header[data-scrolled='true'] {
+  background: rgb(5 6 15 / 0.82);
+  backdrop-filter: blur(14px);
+  border-block-end-color: var(--line);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  width: min(1320px, 100% - 2 * var(--gutter));
+  height: var(--header-height);
+  margin-inline: auto;
+}
+
+.brand img {
+  width: 132px;
+  height: auto;
+}
+
+.nav {
+  display: flex;
+  gap: var(--space-5);
+  margin-inline-start: var(--space-4);
+  font-size: var(--step--1);
+  font-weight: 500;
+}
+
+.nav a,
+.pageSwitch,
+.langSwitch {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--duration) var(--ease);
+}
+
+.nav a:hover,
+.pageSwitch:hover,
+.langSwitch:hover {
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-inline-start: auto;
+  font-size: var(--step--1);
+}
+
+.langSwitch {
+  font-weight: 700;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--pink);
+  color: #170c14;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.menuButton {
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.mobileNav {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .nav,
+  .pageSwitch {
+    display: none;
+  }
+
+  .menuButton {
+    display: grid;
+  }
+
+  .mobileNav[data-open='true'] {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-3) var(--gutter) var(--space-5);
+  }
+
+  .mobileNav a {
+    padding-block: var(--space-3);
+    border-block-end: 1px solid var(--line);
+    font-size: var(--step-1);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mobileNav .mobileCta {
+    margin-block-start: var(--space-3);
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--pink);
+    color: #170c14;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .cta {
+    display: none;
+  }
+
+  .brand img {
+    width: 112px;
+  }
+}

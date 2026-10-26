@@ -1,0 +1,79 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgb(3 4 12 / 0.72);
+  backdrop-filter: blur(6px);
+  transition: opacity var(--duration) var(--ease);
+}
+
+.backdrop[data-starting-style],
+.backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.popup {
+  position: fixed;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  z-index: 61;
+  width: min(var(--modal-width), 100% - 2 * var(--space-4));
+  max-height: calc(100dvh - 2 * var(--space-4));
+  overflow: auto;
+  padding: var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.55);
+  translate: -50% -50%;
+  transition:
+    opacity var(--duration) var(--ease),
+    scale var(--duration) var(--ease);
+}
+
+[dir='rtl'].popup {
+  translate: 50% -50%;
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  scale: 0.97;
+}
+
+.medium {
+  --modal-width: 640px;
+}
+
+.wide {
+  --modal-width: 1000px;
+}
+
+.full {
+  --modal-width: 1600px;
+  padding: var(--space-4);
+}
+
+.title {
+  margin-block-end: var(--space-4);
+  padding-inline-end: var(--space-7);
+  font-size: var(--step-2);
+}
+
+.close {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-end: var(--space-4);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: rgb(5 6 15 / 0.7);
+}
+
+.close:hover {
+  background: var(--surface-2);
+}

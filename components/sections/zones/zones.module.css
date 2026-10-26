@@ -1,0 +1,149 @@
+.section {
+  padding-block: var(--space-9);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  padding: 0;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  align-content: end;
+  width: 100%;
+  min-height: 420px;
+  padding: var(--space-5);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  text-align: start;
+  isolation: isolate;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgb(5 6 15 / 0.95) 25%, rgb(5 6 15 / 0.15) 70%);
+}
+
+.card:hover {
+  border-color: var(--zone);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 600ms var(--ease);
+}
+
+.card:hover .image {
+  scale: 1.04;
+}
+
+.number {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-start: var(--space-4);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--zone);
+  color: #fff;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 700;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.name {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: var(--step-3);
+  font-weight: 800;
+  line-height: var(--leading-tight);
+}
+
+.summary {
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.open {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-block-start: var(--space-3);
+  color: var(--pink);
+  font-weight: 700;
+}
+
+:global([dir='rtl']) .flip {
+  transform: scaleX(-1);
+}
+
+.dialog {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.dialogImage {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.dialog h3 {
+  font-size: var(--step-1);
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0;
+}
+
+.features li {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--zone);
+  border-radius: var(--radius-pill);
+}
+
+.concept {
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 340px;
+  }
+}

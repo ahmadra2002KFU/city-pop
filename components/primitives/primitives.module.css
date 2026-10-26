@@ -1,0 +1,81 @@
+/* Shared building blocks used by every section. */
+.section {
+  padding-block: var(--space-9);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 46rem;
+  margin-block-end: var(--space-7);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--pink);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient);
+}
+
+.title {
+  font-size: var(--step-4);
+}
+
+.lead {
+  color: var(--text-muted);
+  font-size: var(--step-1);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding-inline: var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--pink);
+  color: #170c14;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform var(--duration) var(--ease),
+    background-color var(--duration) var(--ease);
+}
+
+.button:hover {
+  background: #ffcbd4;
+  transform: translateY(-1px);
+}
+
+.ghost {
+  composes: button;
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.ghost:hover {
+  background: rgb(255 255 255 / 0.08);
+}
+
+.icon {
+  flex: none;
+}
+
+/* Mirror directional icons in right-to-left layouts. */
+:global([dir='rtl']) .flip {
+  transform: scaleX(-1);
+}

@@ -1,0 +1,19 @@
+{
+  "$comment": "Source images for the site. Run `npm run images` after editing; outputs go to public/media and content/media.generated.ts. crop is in source pixels: [left, top, width, height].",
+  "images": [
+    { "id": "gate", "src": "gate.jpg", "widths": [640, 1280, 1920, 2560] },
+    { "id": "zone-hub", "src": "zone-hub.jpg", "widths": [480, 960, 1440] },
+    { "id": "zone-social", "src": "zone-social.jpg", "widths": [480, 960, 1440] },
+    { "id": "zone-tiny", "src": "zone-tiny.jpg", "widths": [480, 960, 1440] },
+    { "id": "zone-fnb", "src": "zone-fnb.jpg", "widths": [480, 960, 1440] },
+    { "id": "zone-stage", "src": "zone-stage.jpg", "widths": [480, 960, 1440] },
+    { "id": "zone-popoff", "src": "zone-popoff.jpg", "widths": [480, 960, 1440] },
+    { "id": "hub-courtyard", "src": "hub-courtyard.jpg", "widths": [640, 960, 1440] },
+    { "id": "fast-pop-wall", "src": "fast-pop-wall.jpg", "widths": [640, 960, 1440] },
+    { "id": "khobar-water-tower", "src": "khobar-water-tower.jpg", "widths": [640, 1280, 1920] },
+    { "id": "masterplan-cad", "src": "masterplan-cad.jpg", "widths": [1280, 2048, 4096] },
+    { "id": "masterplan-zoned", "src": "masterplan-zoned.png", "widths": [960, 1920, 3560] },
+    { "id": "wordmark", "src": "wordmark.png", "widths": [240, 480], "alpha": true },
+    { "id": "mufeed-logo", "src": "mufeed-logo.png", "widths": [200, 400], "alpha": true }
+  ]
+}
