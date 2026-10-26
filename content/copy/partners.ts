@@ -38,7 +38,6 @@ export const partnersCopy = {
       ar: 'اختر وحدة أو منطقة لعرض المساحة والسعر. اسحب للتنقل واستخدم أزرار التكبير.',
       en: 'Select a unit or an area to see its size and price. Drag to move around and use the zoom buttons.',
     },
-    unit: { ar: 'وحدة', en: 'Unit' },
     zoomToPick: {
       ar: 'كبّر المخطط لاختيار وحدة بعينها',
       en: 'Zoom in to pick an individual unit',
@@ -71,7 +70,6 @@ export const partnersCopy = {
     filterLabel: { ar: 'تصفية حسب المنطقة', en: 'Filter by zone' },
     allZones: { ar: 'كل المناطق', en: 'All zones' },
     unitNumbers: { ar: 'أرقام الوحدات', en: 'Unit numbers' },
-    unitType: { ar: 'نوع الوحدة', en: 'Unit type' },
     enquire: { ar: 'اطلب هذه الوحدة', en: 'Enquire about this unit' },
     note: {
       ar: 'القيمة لكامل مدة الفعالية. تُؤكَّد تفاصيل الضريبة والتجهيزات والتوفر عند التعاقد.',
