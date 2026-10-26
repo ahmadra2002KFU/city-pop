@@ -245,6 +245,31 @@ export const visitorsCopy = {
       ar: 'من البوابة الرئيسية إلى المسرح: هكذا تتوزع المناطق على مساحة 46,353 مترًا مربعًا.',
       en: 'From the main gate to the stage: how the zones are laid out across 46,353 square metres.',
     },
+    /** Map controls, shared by the visitor map and the partners masterplan. */
+    controls: {
+      mapLabel: { ar: 'مخطط الموقع التفاعلي', en: 'Interactive site plan' },
+      hint: {
+        ar: 'اختر منطقة لعرض محتواها. اسحب للتنقل واستخدم أزرار التكبير.',
+        en: 'Select an area to see what is in it. Drag to move around and use the zoom buttons.',
+      },
+      zoomIn: { ar: 'تكبير', en: 'Zoom in' },
+      zoomOut: { ar: 'تصغير', en: 'Zoom out' },
+      reset: { ar: 'إظهار المخطط كاملًا', en: 'Show the whole plan' },
+      overview: {
+        ar: 'خريطة مصغّرة: اضغط للانتقال إلى جزء من المخطط',
+        en: 'Overview: tap to jump to part of the plan',
+      },
+      legendLabel: { ar: 'دليل المخطط', en: 'Map key' },
+      area: { ar: 'المنطقة', en: 'Area' },
+      zoomToArea: { ar: 'كبّر على هذه المنطقة', en: 'Zoom in on this area' },
+      originalDrawing: { ar: 'عرض المخطط الأصلي', en: 'View the original drawing' },
+      drawingTitle: { ar: 'المخطط الهندسي الأصلي', en: 'Original site drawing' },
+      drawingHint: {
+        ar: 'اسحب للتنقل، واستخدم الأزرار أو إصبعين للتكبير.',
+        en: 'Drag to move around; use the buttons or two fingers to zoom.',
+      },
+      metres: { ar: 'م', en: 'm' },
+    },
   },
   visit: {
     eyebrow: { ar: 'خطط لزيارتك', en: 'Plan your visit' },

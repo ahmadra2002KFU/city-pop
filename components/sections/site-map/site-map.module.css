@@ -2,31 +2,666 @@
   padding-block: var(--space-9);
 }
 
-.figure {
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  background: #000;
+/* ---------- Map stage ---------- */
+
+.planWrap {
+  display: grid;
+  gap: var(--space-4);
 }
 
-.plan {
+.stage {
+  position: relative;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 400 / 137;
+  overflow: hidden;
+  border: 1px solid rgb(152 122 212 / 0.28);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgb(46 151 228 / 0.12), transparent 60%),
+    radial-gradient(80% 70% at 90% 100%, rgb(255 182 195 / 0.08), transparent 60%),
+    #060816;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.03),
+    0 30px 80px -40px rgb(46 151 228 / 0.45);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pannable {
+  cursor: grab;
+}
+
+.grabbing {
+  cursor: grabbing;
+}
+
+.svg {
   width: 100%;
-  min-width: 720px;
+  height: 100%;
+  overflow: visible;
+}
+
+.svg text {
+  font-family: 'Outfit', 'Tajawal', system-ui, sans-serif;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.gridLine {
+  fill: none;
+  stroke: rgb(152 122 212 / 0.09);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+/* ---------- The drawing underlay ---------- */
+
+.drawing {
+  fill: none;
+  stroke: rgb(205 214 255 / 0.26);
+  stroke-width: 1px;
+  pointer-events: none;
+}
+
+.drawing * {
+  vector-effect: non-scaling-stroke;
+}
+
+.siteEdge {
+  stroke: rgb(205 214 255 / 0.35);
+  stroke-dasharray: 6 4;
+}
+
+.hall {
+  stroke: rgb(205 214 255 / 0.5);
+}
+
+.dots circle {
+  fill: rgb(205 214 255 / 0.22);
+  stroke: none;
+}
+
+.seats line {
+  stroke: rgb(55 170 168 / 0.55);
+}
+
+.stageDeck {
+  fill: rgb(55 170 168 / 0.25);
+  stroke: rgb(55 170 168 / 0.8);
+}
+
+.track {
+  stroke: rgb(68 130 255 / 0.75);
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+}
+
+.planter {
+  stroke: rgb(120 220 120 / 0.55);
+  stroke-width: 2px;
+}
+
+.planterCore {
+  fill: rgb(120 220 120 / 0.5);
+  stroke: none;
+}
+
+.dimension line {
+  stroke: rgb(255 182 195 / 0.55);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.dimension text {
+  fill: var(--pink);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Interactive layers ---------- */
+
+.zones,
+.units,
+.badges {
+  transition: opacity var(--duration) var(--ease);
+}
+
+.dimmed {
+  opacity: 0.32;
+}
+
+.zone,
+.unit,
+.typeArea {
+  cursor: pointer;
+  outline: none;
+}
+
+.pannable .zone,
+.pannable .unit,
+.pannable .typeArea {
+  cursor: pointer;
+}
+
+.hit {
+  fill: transparent;
+  stroke: none;
+}
+
+.shape {
+  vector-effect: non-scaling-stroke;
+  transition:
+    fill-opacity var(--duration) var(--ease),
+    stroke-width var(--duration) var(--ease);
+}
+
+.zone .shape {
+  fill: var(--zone);
+  fill-opacity: 0.36;
+  stroke: var(--zone);
+  stroke-width: 1.25px;
+}
+
+.zone.on .shape {
+  fill-opacity: 0.62;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 0 5px var(--zone));
+}
+
+.unit .shape {
+  fill: var(--zone);
+  fill-opacity: 0.26;
+  stroke: rgb(255 255 255 / 0.45);
+  stroke-width: 1px;
+}
+
+.unit text {
+  fill: rgb(255 255 255 / 0.9);
+  font-weight: 600;
+}
+
+.unit.on .shape {
+  fill: var(--pink);
+  fill-opacity: 0.55;
+  stroke: var(--pink);
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 6px rgb(255 182 195 / 0.85));
+}
+
+.unit.on text {
+  fill: #170c14;
+}
+
+.typeArea .shape {
+  fill: var(--zone);
+  fill-opacity: 0.55;
+  stroke: var(--pink);
+  stroke-width: 1.25px;
+  stroke-dasharray: 4 3;
+}
+
+.typeArea.on .shape {
+  fill: var(--pink);
+  fill-opacity: 0.7;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 6px rgb(255 182 195 / 0.85));
+}
+
+/* "Show on map" from the Spaces cards: the requested type glows through the dimmed layer. */
+.dimmed .lit,
+.lit {
+  opacity: 1;
+}
+
+.units.dimmed {
+  opacity: 1;
+}
+
+.units.dimmed .unit:not(.lit),
+.units.dimmed .typeArea:not(.lit) {
+  opacity: 0.3;
+}
+
+.lit .shape {
+  fill: var(--pink);
+  fill-opacity: 0.62;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 7px rgb(255 182 195 / 0.9));
+}
+
+.lit text {
+  fill: #170c14;
+}
+
+.inert {
+  pointer-events: none;
+}
+
+.zone:focus-visible .shape,
+.unit:focus-visible .shape,
+.typeArea:focus-visible .shape {
+  stroke: var(--focus);
+  stroke-width: 3px;
+  stroke-dasharray: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .zone:hover .shape {
+    fill-opacity: 0.55;
+  }
+
+  .unit:hover .shape {
+    fill-opacity: 0.5;
+    stroke: #fff;
+  }
+
+  .typeArea:hover .shape {
+    fill-opacity: 0.75;
+  }
+}
+
+.badges {
+  pointer-events: none;
+}
+
+.badge circle {
+  fill: var(--zone);
+  stroke: rgb(255 255 255 / 0.9);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 4px rgb(0 0 0 / 0.6));
+}
+
+.badge text {
+  fill: var(--zone-ink, #fff);
+}
+
+.areaLabel {
+  fill: rgb(255 255 255 / 0.85);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---------- Overlay chip and detail card ---------- */
+
+.chip {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-start: var(--space-3);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: calc(100% - 2 * var(--space-3));
+  padding-block: var(--space-1);
+  padding-inline: var(--space-4) var(--space-1);
+  border: 1px solid rgb(255 182 195 / 0.5);
+  border-radius: var(--radius-pill);
+  background: rgb(6 8 22 / 0.88);
+  backdrop-filter: blur(8px);
+  font-size: var(--step--1);
+  box-shadow: 0 0 24px rgb(255 182 195 / 0.25);
+}
+
+.chip:focus-visible {
+  outline-offset: 2px;
+}
+
+.chip strong {
+  color: var(--pink);
+}
+
+.chip button {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-block: -6px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.chip button:hover {
+  background: rgb(255 255 255 / 0.08);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgb(152 122 212 / 0.1), transparent 40%),
+    rgb(9 11 26 / 0.96);
+  box-shadow:
+    0 24px 60px -20px rgb(0 0 0 / 0.75),
+    0 0 0 1px rgb(255 182 195 / 0.06);
+}
+
+.card:focus-visible {
+  outline-offset: 2px;
+}
+
+.cardFloating {
+  position: absolute;
+  z-index: 5;
+  width: min(320px, 100%);
+  translate: -50% 0;
+  backdrop-filter: blur(10px);
+}
+
+.cardFloating[data-placement='above'] {
+  translate: -50% -100%;
+}
+
+.cardClose {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.cardClose:hover {
+  background: rgb(255 255 255 / 0.08);
+  color: var(--text);
+}
+
+.cardEyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline-end: var(--space-7);
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.cardNumber {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--zone);
+  color: var(--zone-ink, #fff);
+  font-size: 0.85rem;
+}
+
+.cardDot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--zone);
+  box-shadow: 0 0 10px var(--zone);
+}
+
+.cardTitle {
+  display: grid;
+  gap: var(--space-1);
+  padding-inline-end: var(--space-6);
+  font-size: var(--step-1);
+}
+
+.cardSubtitle {
+  color: var(--text-muted);
+  font-size: var(--step-0);
+  font-weight: 500;
+}
+
+.cardFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.cardFeatures li {
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.cardCount {
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.cardCount strong {
+  color: var(--text);
+  font-size: var(--step-1);
+}
+
+.cardSpecs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding-block: var(--space-3);
+  border-block: 1px solid var(--line);
+}
+
+.cardSpecs dt {
+  color: var(--text-subtle);
+  font-size: 0.78rem;
+}
+
+.cardSpecs dd {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--step--1);
+}
+
+.cardSpecs dd.cardPrice {
+  color: var(--pink);
+  font-size: var(--step-0);
+}
+
+.cardNote {
+  color: var(--text-subtle);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.cardEnquire,
+.cardAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding-inline: var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cardEnquire {
+  background: var(--pink);
+  color: #170c14;
+}
+
+.cardEnquire:hover {
+  background: #ffcbd4;
+}
+
+.cardAction {
+  justify-self: start;
+  border-color: var(--line-strong);
+  background: transparent;
+}
+
+.cardAction:hover {
+  background: rgb(255 255 255 / 0.08);
+}
+
+/* ---------- Toolbar ---------- */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hint {
+  flex: 1 1 16rem;
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+}
+
+.minimap {
+  flex: none;
+  width: 168px;
+  height: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: #060816;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.minimap rect:not(.minimapSite, .minimapView) {
+  fill-opacity: 0.75;
+}
+
+.minimapSite {
+  fill: none;
+  stroke: rgb(205 214 255 / 0.4);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.minimapView {
+  fill: rgb(255 182 195 / 0.12);
+  stroke: var(--pink);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+}
+
+.zoomButtons {
+  display: inline-flex;
+  flex: none;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+}
+
+.zoomButtons button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+}
+
+.zoomButtons button + button {
+  border-inline-start: 1px solid var(--line);
+}
+
+.zoomButtons button:hover:not(:disabled) {
+  background: rgb(255 255 255 / 0.08);
+}
+
+.zoomButtons button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.zoomButtons button:focus-visible {
+  outline-offset: -3px;
+}
+
+.drawingButton {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-weight: 700;
+  font-size: var(--step--1);
+}
+
+.drawingButton:hover {
+  background: rgb(255 255 255 / 0.08);
+}
+
+.allocation {
+  padding-inline-start: var(--space-3);
+  border-inline-start: 2px solid var(--pink);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+/* ---------- Legend ---------- */
+
+.legendTitle {
+  margin-block-start: var(--space-4);
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 .legend {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-  margin-block-start: var(--space-5);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
   padding: 0;
 }
 
-.legend li {
+.legendButton {
   display: grid;
   grid-template-columns: 2rem 1fr;
   gap: var(--space-3);
   align-items: start;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: transparent;
+  text-align: start;
+  transition:
+    border-color var(--duration) var(--ease),
+    background-color var(--duration) var(--ease);
+}
+
+.legendButton:hover {
+  border-color: var(--zone);
+}
+
+.legendButton[aria-pressed='true'] {
+  border-color: var(--zone);
+  background: rgb(255 255 255 / 0.05);
+  box-shadow: inset 0 0 0 1px var(--zone);
 }
 
 .number {
@@ -36,23 +671,110 @@
   height: 2rem;
   border-radius: 50%;
   background: var(--zone);
-  color: #fff;
+  color: var(--zone-ink, #fff);
   font-weight: 700;
 }
 
-.legend p {
+.legendText {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.legendText span {
   color: var(--text-muted);
   font-size: var(--step--1);
 }
 
-@media (max-width: 900px) {
+/* ---------- Original drawing modal ---------- */
+
+.drawingViewer {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.drawingFrame {
+  position: relative;
+  aspect-ratio: 4096 / 1358;
+  max-height: 72vh;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #000;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.drawingCanvas {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  transform-origin: 0 0;
+}
+
+.drawingCanvas picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.drawingImage {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  pointer-events: none;
+}
+
+@media (max-width: 899px) {
+  .frame {
+    aspect-ratio: auto;
+    height: clamp(300px, 62vw, 460px);
+  }
+
   .legend {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 560px) {
+  .toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .minimap {
+    width: 100%;
+  }
+
+  .hint {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .drawingButton {
+    grid-column: 1 / -1;
+    justify-content: center;
+    order: 4;
+  }
+
   .legend {
     grid-template-columns: 1fr;
+  }
+
+  .drawingFrame {
+    aspect-ratio: auto;
+    height: min(55vh, 420px);
+  }
+
+  .zoomButtons {
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zone.on .shape,
+  .unit.on .shape,
+  .typeArea.on .shape,
+  .lit .shape {
+    transition: none;
   }
 }

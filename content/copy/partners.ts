@@ -34,6 +34,24 @@ export const partnersCopy = {
     },
     originalDrawing: { ar: 'عرض المخطط الأصلي', en: 'View the original drawing' },
     legendLabel: { ar: 'دليل المخطط', en: 'Map key' },
+    hint: {
+      ar: 'اختر وحدة أو منطقة لعرض المساحة والسعر. اسحب للتنقل واستخدم أزرار التكبير.',
+      en: 'Select a unit or an area to see its size and price. Drag to move around and use the zoom buttons.',
+    },
+    unit: { ar: 'وحدة', en: 'Unit' },
+    zoomToPick: {
+      ar: 'كبّر المخطط لاختيار وحدة بعينها',
+      en: 'Zoom in to pick an individual unit',
+    },
+    showing: { ar: 'معروض على المخطط', en: 'Shown on the plan' },
+    clearHighlight: { ar: 'إلغاء التمييز', en: 'Clear highlight' },
+    enquireUnit: { ar: 'اطلب هذه الوحدة', en: 'Enquire about this unit' },
+    enquireType: { ar: 'اطلب هذا النوع من الوحدات', en: 'Enquire about these units' },
+    unitsInArea: { ar: 'وحدات داخل هذه المساحات', en: 'units within these areas' },
+    allocation: {
+      ar: 'يُحدَّد موقع كل متجر ثانوي وكل كشك مأكولات داخل هذه المساحات بالتنسيق مع فريق سيتي بوب.',
+      en: 'The exact position of each boutique store and F&B kiosk within these areas is confirmed with the City Pop team.',
+    },
   },
   spaces: {
     eyebrow: { ar: 'المساحات التأجيرية', en: 'Leasable spaces' },
@@ -50,6 +68,10 @@ export const partnersCopy = {
     days: { ar: 'يومًا', en: 'days' },
     idealFor: { ar: 'مناسبة لـ', en: 'Ideal for' },
     showOnMap: { ar: 'أظهر على المخطط', en: 'Show on map' },
+    filterLabel: { ar: 'تصفية حسب المنطقة', en: 'Filter by zone' },
+    allZones: { ar: 'كل المناطق', en: 'All zones' },
+    unitNumbers: { ar: 'أرقام الوحدات', en: 'Unit numbers' },
+    unitType: { ar: 'نوع الوحدة', en: 'Unit type' },
     enquire: { ar: 'اطلب هذه الوحدة', en: 'Enquire about this unit' },
     note: {
       ar: 'القيمة لكامل مدة الفعالية. تُؤكَّد تفاصيل الضريبة والتجهيزات والتوفر عند التعاقد.',
