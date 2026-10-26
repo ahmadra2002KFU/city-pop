@@ -58,21 +58,49 @@ export const partnersCopy = {
   },
   sponsorship: {
     eyebrow: { ar: 'الرعاية', en: 'Sponsorship' },
-    title: { ar: 'ثلاث فئات، تسعة رعاة فقط', en: 'Three tiers. Only nine sponsors.' },
+    /** `{slots}` is the total sponsor count across tiers, written with `slotsOnly`. */
+    title: { ar: 'ثلاث فئات، {slots}', en: 'Three tiers. {slots}.' },
     lead: {
       ar: 'من حقوق التسمية والحصرية إلى الظهور في كل نقطة تماس، اختر الفئة التي تناسب أهدافك.',
       en: 'From naming rights and exclusivity to visibility at every touchpoint, choose the tier that fits your goals.',
     },
     price: { ar: 'ريال سعودي', en: 'SAR' },
-    vat: { ar: 'غير شاملة ضريبة القيمة المضافة', en: 'excluding VAT' },
+    vat: { ar: 'غير شاملة ضريبة القيمة المضافة', en: 'excl. VAT' },
     slots: { ar: 'عدد الرعاة', en: 'Sponsors' },
+    /** Scarcity line, chosen with Intl.PluralRules; `{n}` is the slot count. */
+    slotsOnly: {
+      one: { ar: 'راعٍ واحد فقط', en: '1 sponsor only' },
+      two: { ar: 'راعيان فقط', en: '2 sponsors only' },
+      few: { ar: '{n} رعاة فقط', en: '{n} sponsors only' },
+      many: { ar: '{n} راعيًا فقط', en: '{n} sponsors only' },
+      other: { ar: '{n} راعٍ فقط', en: '{n} sponsors only' },
+    },
     benefits: { ar: 'ميزة', en: 'benefits' },
+    /** `{n}` benefits included out of `{total}` rows in the matrix. */
+    benefitsOf: { ar: '{n} ميزة من أصل {total}', en: '{n} of {total} benefits' },
+    highlights: { ar: 'أبرز ما تتميز به', en: 'Stand-out rights' },
     choose: { ar: 'اطلب هذه الفئة', en: 'Enquire about this tier' },
     sharedTitle: { ar: 'في جميع الفئات', en: 'Included in every tier' },
     compareTitle: { ar: 'المقارنة الكاملة', en: 'Full comparison' },
+    compareLead: {
+      ar: 'جميع الحقوق كما وردت في عرض الرعاية، مقسّمة إلى مجموعات.',
+      en: 'Every right in the sponsorship offer, grouped by type.',
+    },
     benefitColumn: { ar: 'الحق / الميزة', en: 'Right / benefit' },
     included: { ar: 'مشمول', en: 'Included' },
     notIncluded: { ar: 'غير مشمول', en: 'Not included' },
+    legendShare: { ar: 'نسبة من مساحة الشعارات', en: 'Share of logo space' },
+    legendCount: { ar: 'عدد', en: 'Quantity' },
+    expandAll: { ar: 'افتح كل المجموعات', en: 'Expand all groups' },
+    collapseAll: { ar: 'اطوِ كل المجموعات', en: 'Collapse all groups' },
+    /** `{n}` rows of `{m}` in a group are included for one tier. */
+    groupCount: { ar: '{n} من {m} مشمولة', en: '{n} of {m} included' },
+    showTier: { ar: 'اعرض مزايا الفئة', en: 'Show benefits for' },
+    /** Mobile status line under the tier switcher. */
+    showing: {
+      ar: 'تعرض الآن: {tier}، {n} ميزة من أصل {total}',
+      en: 'Showing {tier}: {n} of {total} benefits',
+    },
   },
   delivery: {
     eyebrow: { ar: 'مسؤوليات مفيد', en: 'What Mufeed delivers' },
@@ -82,6 +110,7 @@ export const partnersCopy = {
     },
     groups: [
       {
+        id: 'build',
         title: { ar: 'التصميم والتنفيذ', en: 'Design and build' },
         items: [
           {
@@ -115,6 +144,7 @@ export const partnersCopy = {
         ],
       },
       {
+        id: 'operations',
         title: { ar: 'العمليات واللوجستيات', en: 'Operations and logistics' },
         items: [
           {
@@ -155,6 +185,7 @@ export const partnersCopy = {
         ],
       },
       {
+        id: 'marketing',
         title: { ar: 'التسويق', en: 'Marketing' },
         items: [
           {
@@ -181,6 +212,7 @@ export const partnersCopy = {
         ],
       },
       {
+        id: 'content',
         title: { ar: 'المحتوى والفعاليات', en: 'Content and events' },
         items: [
           {
@@ -207,6 +239,7 @@ export const partnersCopy = {
         ],
       },
       {
+        id: 'permits',
         title: { ar: 'التصاريح والعلاقات الحكومية', en: 'Permits and government relations' },
         items: [
           {
