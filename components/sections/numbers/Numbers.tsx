@@ -1,33 +1,46 @@
-import { formatNumber, tr, type Lang } from '@/content/i18n';
+import { tr, type Lang, type L } from '@/content/i18n';
 import { facts, stageSeatTotal } from '@/content/facts';
 import { totalUnits } from '@/content/units';
 import { partnersCopy } from '@/content/copy/partners';
+import { CountUp } from './CountUp';
 import styles from './numbers.module.css';
 
 const copy = partnersCopy.numbers;
 
+type Stat = { key: string; value: number; pad?: number; label: L };
+
 export function Numbers({ lang }: { lang: Lang }) {
-  const stats = [
-    { value: formatNumber(facts.area.value), label: copy.area },
-    { value: formatNumber(facts.expectedVisitors.value), label: copy.visitors },
-    { value: String(facts.operatingDays.value), label: copy.days },
-    { value: String(facts.zoneCount.value).padStart(2, '0'), label: copy.zones },
-    { value: String(totalUnits), label: copy.units },
-    { value: formatNumber(stageSeatTotal), label: copy.seats },
+  const lead: Stat = { key: 'visitors', value: facts.expectedVisitors.value, label: copy.visitors };
+  const stats: Stat[] = [
+    { key: 'area', value: facts.area.value, label: copy.area },
+    { key: 'days', value: facts.operatingDays.value, label: copy.days },
+    { key: 'zones', value: facts.zoneCount.value, pad: 2, label: copy.zones },
+    { key: 'units', value: totalUnits, label: copy.units },
+    { key: 'seats', value: stageSeatTotal, label: copy.seats },
   ];
   return (
-    <section id="numbers" className={`container ${styles.section}`} aria-labelledby="numbers-title">
-      <h2 id="numbers-title" className={styles.title}>
-        {tr(copy.eyebrow, lang)}
-      </h2>
-      <dl className={styles.grid}>
-        {stats.map((stat) => (
-          <div key={stat.label.en}>
-            <dt>{tr(stat.label, lang)}</dt>
-            <dd className="latin">{stat.value}</dd>
+    <section id="numbers" className={styles.section} aria-labelledby="numbers-title">
+      <div className="container">
+        <h2 id="numbers-title" className={styles.title}>
+          {tr(copy.eyebrow, lang)}
+        </h2>
+        <dl className={styles.grid}>
+          <div className={styles.lead}>
+            <dt>{tr(lead.label, lang)}</dt>
+            <dd className="latin">
+              <CountUp value={lead.value} />
+            </dd>
           </div>
-        ))}
-      </dl>
+          {stats.map((stat) => (
+            <div key={stat.key} className={styles[stat.key]}>
+              <dt>{tr(stat.label, lang)}</dt>
+              <dd className="latin">
+                <CountUp value={stat.value} pad={stat.pad} />
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
     </section>
   );
 }

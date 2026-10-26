@@ -75,6 +75,21 @@ export const common = {
   partnerCta: { ar: 'كن شريكًا', en: 'Partner with us' },
   enquireCta: { ar: 'تواصل معنا', en: 'Enquire now' },
   conceptLabel: { ar: 'تصوّر مبدئي', en: 'Concept visual' },
+  /**
+   * Concept film modal. Off until Mufeed confirms (plan D1/D7): the full film shows
+   * Riyadh signage and its music licence is unknown. The film file is not in the repo;
+   * add it at `src` (under public/) before enabling.
+   */
+  film: {
+    enabled: false as boolean,
+    src: '/media/video/city-pop-film-720.mp4',
+    cta: { ar: 'شاهد الفيلم التصوّري', en: 'Watch the concept film' },
+    title: { ar: 'سيتي بوب: الفيلم التصوّري', en: 'City Pop: the concept film' },
+    note: {
+      ar: 'تصوّر مبدئي مُنتَج رقميًا، وليس تصويرًا للفعالية.',
+      en: 'A digitally produced concept visualisation, not footage of the event.',
+    },
+  },
   footer: {
     tagline: {
       ar: 'تسوق . ترفيه . تجارب',
@@ -86,5 +101,8 @@ export const common = {
       en: 'Images are concept visuals. Prices are in Saudi riyals; sponsorship prices exclude VAT. All spaces and packages are subject to availability and approval by the City Pop team.',
     },
     rights: { ar: 'جميع الحقوق محفوظة', en: 'All rights reserved' },
+    pagesLabel: { ar: 'الصفحات', en: 'Pages' },
+    contactLabel: { ar: 'تواصل', en: 'Contact' },
+    backToTop: { ar: 'العودة إلى الأعلى', en: 'Back to top' },
   },
 } as const;

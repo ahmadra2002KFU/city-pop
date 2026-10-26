@@ -1,37 +1,86 @@
 .footer {
+  position: relative;
   margin-block-start: var(--space-9);
   padding-block: var(--space-8) var(--space-6);
-  border-block-start: 1px solid var(--line);
-  background: var(--bg-raised);
+  background:
+    radial-gradient(70% 120% at 50% 0%, rgb(152 122 212 / 0.12), transparent 60%),
+    var(--bg-raised);
+}
+
+/* The six zone colours, in V06 order: the city's signature edge. */
+.spectrum {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  display: flex;
+  height: 4px;
+}
+
+.spectrum span {
+  flex: 1;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: var(--space-7);
+  grid-template-columns: minmax(0, 2fr) repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-7) var(--space-6);
   align-items: start;
 }
 
+.brand {
+  display: grid;
+  gap: var(--space-3);
+}
+
 .brand img {
-  width: 180px;
+  width: 200px;
   height: auto;
 }
 
 .tagline {
-  margin-block-start: var(--space-3);
+  font-size: var(--step-1);
   font-weight: 700;
+  word-spacing: 0.2em;
 }
 
 .dates {
-  margin-block-start: var(--space-2);
   color: var(--text-muted);
   font-size: var(--step--1);
+  line-height: 1.8;
+}
+
+.column h2 {
+  margin-block-end: var(--space-2);
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.column ul {
+  display: grid;
+}
+
+.column a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--duration) var(--ease);
+}
+
+.column a:hover,
+.column a[aria-current] {
+  color: var(--text);
 }
 
 .organiser {
   display: grid;
-  gap: var(--space-2);
-  color: var(--text-muted);
+  gap: var(--space-3);
+  justify-items: start;
+  color: var(--text-subtle);
   font-size: var(--step--1);
 }
 
@@ -40,24 +89,9 @@
   height: auto;
 }
 
-.links {
-  display: grid;
-  gap: var(--space-2);
-  font-weight: 500;
-}
-
-.links a {
-  color: var(--text-muted);
-  text-decoration: none;
-}
-
-.links a:hover {
-  color: var(--text);
-}
-
 .bottom {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-4);
   margin-block-start: var(--space-7);
   padding-block-start: var(--space-5);
   border-block-start: 1px solid var(--line);
@@ -65,9 +99,41 @@
   font-size: var(--step--1);
 }
 
-@media (max-width: 760px) {
+.legal {
+  max-width: 60rem;
+}
+
+.bottomRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.toTop {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.toTop:hover {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
   .grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brand {
+    grid-column: 1 / -1;
   }
 }

@@ -35,9 +35,9 @@ export function Countdown({ lang }: { lang: Lang }) {
   const phase = eventPhase(new Date(now));
   if (phase !== 'upcoming') {
     return (
-      <p className={styles.countdown} data-phase={phase}>
-        {tr(phase === 'live' ? copy.live : copy.ended, lang)}
-      </p>
+      <div className={styles.countdown} data-phase={phase}>
+        <p className={styles.countdownStatus}>{tr(phase === 'live' ? copy.live : copy.ended, lang)}</p>
+      </div>
     );
   }
   const left = remaining(now);
@@ -47,14 +47,16 @@ export function Countdown({ lang }: { lang: Lang }) {
     [left.minutes, copy.minutes],
   ] as const;
   return (
-    <p className={styles.countdown} data-phase={phase}>
-      {units.map(([value, label]) => (
-        <span key={label.en} className={styles.countdownUnit}>
-          <strong className="latin">{String(value).padStart(2, '0')}</strong>
-          <span>{tr(label, lang)}</span>
-        </span>
-      ))}
-      <span className={styles.countdownLabel}>{tr(copy.until, lang)}</span>
-    </p>
+    <div className={styles.countdown} data-phase={phase}>
+      <p className={styles.countdownLabel}>{tr(copy.until, lang)}</p>
+      <p className={styles.countdownUnits}>
+        {units.map(([value, label]) => (
+          <span key={label.en} className={styles.countdownUnit}>
+            <strong className="latin">{String(value).padStart(2, '0')}</strong>
+            <span>{tr(label, lang)}</span>
+          </span>
+        ))}
+      </p>
+    </div>
   );
 }
