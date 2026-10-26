@@ -22,6 +22,10 @@ export const visitorsCopy = {
       ar: 'تصوّر بوابة سيتي بوب المضيئة بالنيون الوردي والأزرق',
       en: 'Concept render of the City Pop gateway lit in pink and blue neon',
     },
+    whenLabel: { ar: 'المواعيد', en: 'Dates' },
+    whereLabel: { ar: 'المكان', en: 'Location' },
+    videoPause: { ar: 'إيقاف الفيديو مؤقتًا', en: 'Pause background video' },
+    videoPlay: { ar: 'تشغيل الفيديو', en: 'Play background video' },
   },
   countdown: {
     until: { ar: 'على الافتتاح', en: 'until opening' },
@@ -361,6 +365,9 @@ export const visitorsCopy = {
       ar: 'تُعلن ساعات العمل وتفاصيل الدخول قريبًا. عروض المسرح بتذاكر مستقلة.',
       en: 'Opening hours and entry details will be announced soon. Stage shows are ticketed separately.',
     },
+    opensLabel: { ar: 'الافتتاح', en: 'Opens' },
+    closesLabel: { ar: 'الختام', en: 'Closes' },
+    operatingDays: { ar: 'يوم تشغيل متواصل', en: 'days of continuous operation' },
     nextCitiesTitle: { ar: 'المدن القادمة', en: 'Coming next' },
     nextCitiesLead: {
       ar: 'نفس الهوية، وتشكيلة محلية خاصة بكل مدينة.',
@@ -368,11 +375,15 @@ export const visitorsCopy = {
     },
   },
   partnerBand: {
+    eyebrow: { ar: 'للعلامات التجارية', en: 'For brands' },
     title: { ar: 'علامتك التجارية جزء من المدينة', en: 'Put your brand inside the city' },
     text: {
-      ar: 'مساحات تأجيرية وباقات رعاية لأربعين يومًا أمام 500,000 زائر متوقع.',
-      en: 'Leasable spaces and sponsorship packages for forty days, in front of 500,000 expected visitors.',
+      ar: 'استأجر وحدة في إحدى المناطق أو اختر فئة رعاية، وكن حاضرًا طوال أيام الفعالية.',
+      en: 'Lease a unit in one of the zones or choose a sponsorship tier, and be part of every day of the event.',
     },
+    visitors: { ar: 'زائر متوقع', en: 'expected visitors' },
+    units: { ar: 'وحدة تأجيرية', en: 'leasable units' },
+    tiers: { ar: 'فئات رعاية', en: 'sponsorship tiers' },
     cta: { ar: 'صفحة الشركاء', en: 'See partner options' },
   },
 } as const satisfies Record<string, unknown>;

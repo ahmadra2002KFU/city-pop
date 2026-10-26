@@ -1,18 +1,39 @@
+/* Partners numbers band: one headline figure, five supporting figures, hairline grid. */
 .section {
+  position: relative;
   padding-block: var(--space-8);
+  border-block: 1px solid var(--line);
+  background:
+    radial-gradient(50% 120% at 0% 50%, rgb(46 151 228 / 0.1), transparent 70%),
+    radial-gradient(50% 120% at 100% 50%, rgb(255 182 195 / 0.08), transparent 70%),
+    var(--bg-raised);
 }
 
 .title {
-  margin-block-end: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-end: var(--space-6);
   color: var(--pink);
   font-size: var(--step-0);
 }
 
+.title::before {
+  content: '';
+  width: 2.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient);
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    'lead area area days'
+    'lead zones units seats';
   margin: 0;
+  border-block-start: 1px solid var(--line-strong);
 }
 
 .grid > div {
@@ -20,11 +41,13 @@
   flex-direction: column-reverse;
   justify-content: flex-end;
   gap: var(--space-2);
-  padding-block-start: var(--space-4);
-  border-block-start: 1px solid var(--line-strong);
+  padding: var(--space-5) var(--space-5) var(--space-6);
+  border-block-end: 1px solid var(--line);
+  border-inline-start: 1px solid var(--line);
 }
 
 .grid dt {
+  max-width: 16rem;
   color: var(--text-muted);
   font-size: var(--step--1);
 }
@@ -32,18 +55,79 @@
 .grid dd {
   margin: 0;
   font-size: var(--step-3);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 }
 
-@media (max-width: 1000px) {
+.grid > .lead {
+  grid-area: lead;
+  justify-content: flex-end;
+  border-inline-start: 0;
+  padding-inline-start: 0;
+}
+
+.grid .lead dd {
+  font-size: clamp(2.75rem, 1.5rem + 3.6vw, 5.25rem);
+  font-weight: 700;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-block-end: 0.05em;
+}
+
+.grid .lead dt {
+  color: var(--text);
+  font-size: var(--step-1);
+  font-weight: 700;
+}
+
+.area {
+  grid-area: area;
+}
+
+.grid .area dd {
+  font-size: var(--step-4);
+}
+
+.days {
+  grid-area: days;
+}
+
+.zones {
+  grid-area: zones;
+}
+
+.units {
+  grid-area: units;
+}
+
+.seats {
+  grid-area: seats;
+}
+
+@media (max-width: 960px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'lead lead'
+      'area area'
+      'days zones'
+      'units seats';
   }
-}
 
-@media (max-width: 560px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .grid > .area,
+  .grid > .days,
+  .grid > .units {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+  }
+
+  .grid > .zones,
+  .grid > .seats {
+    border-inline-start: 1px solid var(--line);
+    padding-inline-start: var(--space-5);
   }
 }

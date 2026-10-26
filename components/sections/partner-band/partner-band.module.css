@@ -1,23 +1,131 @@
+.wrap {
+  margin-block: var(--space-8) 0;
+}
+
+/* Brand gradient as the surface, navy type on top (AA: 5.6:1 or better on every stop). */
 .band {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-5);
-  margin-block: var(--space-8);
-  padding: var(--space-7);
-  border: 1px solid transparent;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-areas:
+    'copy stats'
+    'copy cta';
+  gap: var(--space-6) var(--space-8);
+  align-items: end;
+  overflow: hidden;
+  padding: clamp(1.5rem, 1rem + 3vw, 3.5rem);
   border-radius: var(--radius-lg);
+  background: var(--gradient);
+  color: var(--bg);
+  isolation: isolate;
+}
+
+:global([dir='rtl']) .band {
+  background: linear-gradient(270deg, #2e97e4 0%, #987ad4 50%, #ffb6c3 100%);
+}
+
+/* A soft light sweep so the flat gradient reads as lit neon rather than a fill. */
+.band::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background:
-    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
-    var(--gradient) border-box;
+    radial-gradient(40% 80% at 70% 0%, rgb(255 255 255 / 0.28), transparent 70%);
 }
 
-.band h2 {
+.copy {
+  grid-area: copy;
+  display: grid;
+  gap: var(--space-3);
+  align-self: center;
+}
+
+.eyebrow {
+  font-weight: 800;
+}
+
+.copy h2 {
+  max-width: 14ch;
+  font-size: var(--step-4);
+}
+
+.text {
+  max-width: 34rem;
+  font-size: var(--step-1);
+  font-weight: 500;
+}
+
+.stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.stats > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-1);
+  padding-inline-start: var(--space-4);
+  border-inline-start: 2px solid rgb(5 6 15 / 0.35);
+}
+
+.stats dt {
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.stats dd {
+  margin: 0;
   font-size: var(--step-3);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
-.band p {
-  margin-block-start: var(--space-2);
-  color: var(--text-muted);
+.cta {
+  grid-area: cta;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 52px;
+  padding-inline: var(--space-6);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform var(--duration) var(--ease);
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+}
+
+.cta:focus-visible {
+  outline-color: var(--bg);
+}
+
+:global([dir='rtl']) .arrow {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 860px) {
+  .band {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'copy'
+      'stats'
+      'cta';
+  }
+}
+
+@media (max-width: 420px) {
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
 }

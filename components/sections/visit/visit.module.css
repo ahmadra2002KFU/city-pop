@@ -2,21 +2,124 @@
   padding-block: var(--space-9);
 }
 
-.facts {
+/* The event window drawn to scale: each month's share is its number of event dates. */
+.calendar {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'ends days'
+    'track days';
+  gap: var(--space-5) var(--space-7);
+  align-items: end;
+  padding: var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(60% 140% at 100% 0%, rgb(152 122 212 / 0.16), transparent 70%),
+    var(--bg-raised);
+}
+
+:global([dir='rtl']) .calendar {
+  background:
+    radial-gradient(60% 140% at 0% 0%, rgb(152 122 212 / 0.16), transparent 70%),
+    var(--bg-raised);
+}
+
+.ends {
+  grid-area: ends;
+  display: flex;
+  justify-content: space-between;
   gap: var(--space-4);
   margin: 0;
+}
+
+.ends > div:last-child {
+  text-align: end;
+}
+
+.ends dt {
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+}
+
+.ends dd {
+  margin: 0;
+  font-size: var(--step-2);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.track {
+  grid-area: track;
+  position: relative;
+  display: flex;
+  gap: 3px;
+  padding-block-start: var(--space-5);
+}
+
+/* The bar itself; the gradient runs in reading direction, opening to closing. */
+.track::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--gradient);
+  box-shadow: 0 0 24px rgb(152 122 212 / 0.45);
+}
+
+:global([dir='rtl']) .track::before {
+  background: linear-gradient(270deg, #2e97e4 0%, #987ad4 50%, #ffb6c3 100%);
+}
+
+.track span {
+  flex-basis: 0;
+  min-width: 0;
+  padding-inline-start: var(--space-2);
+  border-inline-start: 1px solid var(--line-strong);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.days {
+  grid-area: days;
+  display: grid;
+  justify-items: center;
+  padding-inline-start: var(--space-7);
+  border-inline-start: 1px dashed var(--line-strong);
+  text-align: center;
+}
+
+.days strong {
+  font-size: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.days span {
+  max-width: 10rem;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: var(--space-4);
+  margin: var(--space-4) 0 0;
 }
 
 .facts > div {
   display: grid;
   align-content: start;
   gap: var(--space-2);
-  padding: var(--space-5);
+  padding: var(--space-5) var(--space-6);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-raised);
+  border-radius: var(--radius-lg);
 }
 
 .facts dt {
@@ -37,14 +140,18 @@
 
 .facts dd span {
   color: var(--text-muted);
-  font-size: var(--step--1);
+  font-size: var(--step-0);
   font-weight: 400;
 }
 
 .cities {
   display: grid;
-  gap: var(--space-2);
-  margin-block-start: var(--space-7);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--space-5) var(--space-7);
+  align-items: center;
+  margin-block-start: var(--space-8);
+  padding-block-start: var(--space-6);
+  border-block-start: 1px solid var(--line);
 }
 
 .cities h3 {
@@ -52,6 +159,7 @@
 }
 
 .cities p {
+  margin-block-start: var(--space-1);
   color: var(--text-muted);
 }
 
@@ -59,18 +167,51 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin-block-start: var(--space-3);
-  padding: 0;
 }
 
 .cities li {
-  padding: var(--space-2) var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding-inline: var(--space-4);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.03);
+  font-weight: 500;
 }
 
 @media (max-width: 760px) {
-  .facts {
+  .calendar {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'ends'
+      'track'
+      'days';
+    padding: var(--space-5);
+  }
+
+  .days {
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+    gap: var(--space-3);
+    padding-inline-start: 0;
+    padding-block-start: var(--space-4);
+    border-inline-start: 0;
+    border-block-start: 1px dashed var(--line-strong);
+    text-align: start;
+  }
+
+  .days strong {
+    font-size: var(--step-4);
+  }
+
+  .ends dd {
+    font-size: var(--step-1);
+  }
+
+  .facts,
+  .cities {
     grid-template-columns: 1fr;
   }
 }

@@ -2,16 +2,18 @@
   position: sticky;
   inset-block-start: 0;
   z-index: 50;
+  border-block-end: 1px solid transparent;
   transition:
     background-color var(--duration) var(--ease),
-    border-color var(--duration) var(--ease);
-  border-block-end: 1px solid transparent;
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
 }
 
 .header[data-scrolled='true'] {
-  background: rgb(5 6 15 / 0.82);
-  backdrop-filter: blur(14px);
+  background: rgb(5 6 15 / 0.84);
+  backdrop-filter: blur(16px) saturate(1.2);
   border-block-end-color: var(--line);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
 }
 
 .bar {
@@ -23,6 +25,12 @@
   margin-inline: auto;
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
 .brand img {
   width: 132px;
   height: auto;
@@ -30,32 +38,72 @@
 
 .nav {
   display: flex;
-  gap: var(--space-5);
+  align-items: center;
+  gap: var(--space-1);
   margin-inline-start: var(--space-4);
   font-size: var(--step--1);
   font-weight: 500;
 }
 
-.nav a,
-.pageSwitch,
-.langSwitch {
+.nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: var(--space-3);
   color: var(--text-muted);
   text-decoration: none;
   transition: color var(--duration) var(--ease);
 }
 
+/* Active-section indicator: a short gradient bar under the current link. */
+.nav a::after {
+  content: '';
+  position: absolute;
+  inset-inline: var(--space-3);
+  inset-block-end: 6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient);
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition:
+    opacity var(--duration) var(--ease),
+    transform var(--duration) var(--ease);
+}
+
 .nav a:hover,
-.pageSwitch:hover,
-.langSwitch:hover {
+.nav a[aria-current] {
   color: var(--text);
+}
+
+.nav a[aria-current]::after {
+  opacity: 1;
+  transform: none;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-2);
   margin-inline-start: auto;
   font-size: var(--step--1);
+}
+
+.pageSwitch,
+.langSwitch {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: var(--space-3);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--duration) var(--ease);
+}
+
+.pageSwitch:hover,
+.langSwitch:hover {
+  color: var(--text);
 }
 
 .langSwitch {
@@ -65,13 +113,19 @@
 .cta {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding-inline: var(--space-4);
+  min-height: 44px;
+  margin-inline-start: var(--space-2);
+  padding-inline: var(--space-5);
   border-radius: var(--radius-pill);
   background: var(--pink);
   color: #170c14;
   font-weight: 700;
   text-decoration: none;
+  transition: background-color var(--duration) var(--ease);
+}
+
+.cta:hover {
+  background: #ffcbd4;
 }
 
 .menuButton {
@@ -100,25 +154,64 @@
 
   .mobileNav[data-open='true'] {
     display: grid;
-    gap: var(--space-1);
-    padding: var(--space-3) var(--gutter) var(--space-5);
+    gap: var(--space-4);
+    max-height: calc(100dvh - var(--header-height));
+    overflow-y: auto;
+    padding: var(--space-2) var(--gutter) var(--space-6);
+    border-block-start: 1px solid var(--line);
   }
 
-  .mobileNav a {
-    padding-block: var(--space-3);
+  .mobileNav ul a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
     border-block-end: 1px solid var(--line);
-    font-size: var(--step-1);
+    color: var(--text-muted);
+    font-size: var(--step-2);
     font-weight: 700;
     text-decoration: none;
   }
 
-  .mobileNav .mobileCta {
-    margin-block-start: var(--space-3);
-    border: 0;
+  .mobileNav ul a[aria-current] {
+    color: var(--text);
+  }
+
+  .mobileNav ul a[aria-current]::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gradient);
+  }
+
+  .mobileFoot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .mobileFoot a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: var(--space-4);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .mobileCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
     border-radius: var(--radius-pill);
     background: var(--pink);
     color: #170c14;
-    text-align: center;
+    font-weight: 800;
+    text-decoration: none;
   }
 }
 
