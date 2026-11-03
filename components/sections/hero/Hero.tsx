@@ -1,5 +1,5 @@
 import { formatDate, tr, type Lang } from '@/content/i18n';
-import { facts } from '@/content/facts';
+import { facts, placeName } from '@/content/facts';
 import { zones } from '@/content/zones';
 import { common } from '@/content/site';
 import { visitorsCopy } from '@/content/copy/visitors';
@@ -17,7 +17,6 @@ const copy = visitorsCopy.hero;
 const heroLoop = '/media/video/hero-loop-1280.mp4';
 
 export function Hero({ lang }: { lang: Lang }) {
-  const separator = lang === 'ar' ? '، ' : ', ';
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.media}>
@@ -73,9 +72,7 @@ export function Hero({ lang }: { lang: Lang }) {
             <div>
               <dt>{tr(copy.whereLabel, lang)}</dt>
               <dd>
-                {tr(facts.location.city, lang)}
-                {separator}
-                {tr(facts.location.region, lang)}
+                {placeName(lang)}
               </dd>
             </div>
           </dl>

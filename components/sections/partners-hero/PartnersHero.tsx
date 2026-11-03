@@ -1,6 +1,6 @@
 import { CalendarDays, MapPin } from 'lucide-react';
 import { formatDate, tr, type Lang } from '@/content/i18n';
-import { facts } from '@/content/facts';
+import { facts, placeName } from '@/content/facts';
 import { zones } from '@/content/zones';
 import { common } from '@/content/site';
 import { partnersCopy } from '@/content/copy/partners';
@@ -30,9 +30,7 @@ export function PartnersHero({ lang }: { lang: Lang }) {
             </li>
             <li>
               <MapPin aria-hidden size={18} />
-              {tr(facts.location.city, lang)}
-              {lang === 'ar' ? '، ' : ', '}
-              {tr(facts.location.region, lang)}
+              {placeName(lang)}
             </li>
           </ul>
           <div className={styles.actions}>

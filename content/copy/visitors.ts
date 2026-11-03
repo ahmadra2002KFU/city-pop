@@ -13,8 +13,8 @@ export const visitorsCopy = {
     ],
     tagline: { ar: 'تسوق . ترفيه . تجارب', en: 'Shop · Play · Experience' },
     lead: {
-      ar: 'مدينة متنقلة تجمع التسوق والترفيه والتجارب الحيّة في وجهة واحدة، لأربعين يومًا في الخبر.',
-      en: 'A pop-up city of shopping, entertainment and live experiences in one destination, for forty days in Al Khobar.',
+      ar: 'مدينة متنقلة تجمع التسوق والترفيه والتجارب الحيّة في وجهة واحدة، لأربعين يومًا في المنطقة الشرقية.',
+      en: 'A pop-up city of shopping, entertainment and live experiences in one destination, for forty days in the Eastern Province.',
     },
     primaryCta: { ar: 'اكتشف المناطق', en: 'Explore the zones' },
     filmCta: { ar: 'شاهد الفيلم', en: 'Watch the film' },
@@ -34,8 +34,8 @@ export const visitorsCopy = {
     minutes: { ar: 'دقيقة', en: 'minutes' },
     live: { ar: 'سيتي بوب مفتوحة الآن', en: 'City Pop is open now' },
     ended: {
-      ar: 'اختُتمت نسخة الخبر. نلقاكم في المدينة القادمة.',
-      en: 'The Al Khobar edition has ended. See you in the next city.',
+      ar: 'اختُتمت نسخة المنطقة الشرقية. نلقاكم في المدينة القادمة.',
+      en: 'The Eastern Province edition has ended. See you in the next city.',
     },
   },
   concept: {

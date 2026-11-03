@@ -1,4 +1,7 @@
-import type { L, PageId } from './i18n';
+import { formatDate, formatNumber, type L, type Lang, type PageId } from './i18n';
+import { facts, placeName } from './facts';
+import { totalUnits } from './units';
+import { tiers } from './sponsorship';
 
 /**
  * Contact channels. Mufeed has not supplied them yet (plan decision D4);
@@ -18,26 +21,38 @@ export const contact: {
 
 export const siteName = 'CITY POP';
 
+/** Both languages of a string built from the same facts. */
+function both(build: (lang: Lang) => string): L {
+  return { ar: build('ar'), en: build('en') };
+}
+
+const when = (lang: Lang) =>
+  `${formatDate(facts.dates.start, lang)} – ${formatDate(facts.dates.end, lang)}`;
+const days = facts.operatingDays.value;
+
 export const meta: Record<PageId, { title: L; description: L }> = {
   visitors: {
-    title: {
-      ar: 'سيتي بوب | من الشاشة إلى الواقع، الخبر',
-      en: 'City Pop | From screen to reality, Al Khobar',
-    },
-    description: {
-      ar: 'سيتي بوب: مدينة متنقلة للتسوق والترفيه والتجارب في الخبر، من 25 نوفمبر 2026 إلى 5 يناير 2027. ست مناطق، 40 يومًا من التجارب.',
-      en: 'City Pop is a pop-up city of shopping, entertainment and experiences in Al Khobar, 25 November 2026 to 5 January 2027. Six zones, 40 days.',
-    },
+    title: both((lang) =>
+      lang === 'ar'
+        ? `سيتي بوب | من الشاشة إلى الواقع، ${placeName(lang)}`
+        : `City Pop | From screen to reality, ${placeName(lang)}`,
+    ),
+    description: both((lang) =>
+      lang === 'ar'
+        ? `سيتي بوب: مدينة متنقلة للتسوق والترفيه والتجارب في ${placeName(lang)}، ${when(lang)}. ست مناطق، ${days} يومًا من التجارب.`
+        : `City Pop is a pop-up city of shopping, entertainment and experiences in the ${placeName(lang)}, ${when(lang)}. Six zones, ${days} days.`,
+    ),
   },
   partners: {
     title: {
       ar: 'سيتي بوب للشركاء | المساحات التأجيرية والرعاية',
       en: 'City Pop for partners | Leasable spaces and sponsorship',
     },
-    description: {
-      ar: 'احجز مساحتك أو كن راعيًا في سيتي بوب بالخبر: 54 وحدة تأجيرية و3 فئات رعاية، 500,000 زائر متوقع على مدى 40 يومًا.',
-      en: 'Lease a space or sponsor City Pop in Al Khobar: 54 units and three sponsorship tiers, with 500,000 expected visitors over 40 days.',
-    },
+    description: both((lang) =>
+      lang === 'ar'
+        ? `احجز مساحتك أو كن راعيًا في سيتي بوب، ${placeName(lang)}: ${totalUnits} وحدة تأجيرية و${tiers.length} فئات رعاية، ${formatNumber(facts.expectedVisitors.value)} زائر متوقع على مدى ${days} يومًا.`
+        : `Lease a space or sponsor City Pop in the ${placeName(lang)}: ${totalUnits} units and ${tiers.length} sponsorship tiers, with ${formatNumber(facts.expectedVisitors.value)} expected visitors over ${days} days.`,
+    ),
   },
 };
 

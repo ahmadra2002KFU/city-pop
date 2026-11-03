@@ -1,5 +1,5 @@
 import { pagePath, tr, type Lang, type PageId } from '@/content/i18n';
-import { facts } from '@/content/facts';
+import { facts, placeName } from '@/content/facts';
 import { meta } from '@/content/site';
 import { eventName } from '@/content/seo';
 import { media } from '@/content/media.generated';
@@ -27,13 +27,11 @@ export function eventJsonLd(page: PageId, lang: Lang) {
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: {
       '@type': 'Place',
-      name: [
-        tr(facts.location.city, lang),
-        tr(facts.location.region, lang),
-      ].join(lang === 'ar' ? '، ' : ', '),
+      name: placeName(lang),
       address: {
         '@type': 'PostalAddress',
-        addressLocality: facts.location.city.en,
+        // Only the region is confirmed; a locality is added once Mufeed names a city.
+        ...(facts.location.city ? { addressLocality: facts.location.city.en } : {}),
         addressRegion: facts.location.region.en,
         // ISO 3166-1 code for facts.location.country (Saudi Arabia).
         addressCountry: 'SA',

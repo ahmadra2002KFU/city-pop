@@ -2,7 +2,7 @@
 import { ArrowUp } from 'lucide-react';
 import { assetPath } from '@/lib/asset-path';
 import { formatDate, langs, pagePath, tr, type Lang, type PageId } from '@/content/i18n';
-import { facts } from '@/content/facts';
+import { facts, placeName } from '@/content/facts';
 import { zones } from '@/content/zones';
 import { common, contact, nav } from '@/content/site';
 import { media } from '@/content/media.generated';
@@ -36,9 +36,7 @@ export function Footer({ lang, page }: FooterProps) {
           <p className={styles.dates}>
             {formatDate(facts.dates.start, lang)} – {formatDate(facts.dates.end, lang)}
             <br />
-            {tr(facts.location.city, lang)}
-            {lang === 'ar' ? '، ' : ', '}
-            {tr(facts.location.region, lang)}
+            {placeName(lang)}
           </p>
         </div>
 

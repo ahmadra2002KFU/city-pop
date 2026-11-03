@@ -1,4 +1,4 @@
-import type { L } from './i18n';
+import { tr, type L, type Lang } from './i18n';
 
 /**
  * Every event fact shown on the site, in one place.
@@ -8,11 +8,11 @@ import type { L } from './i18n';
  */
 export const facts = {
   dates: {
-    // The decks' sponsorship mockups print 28 Nov; the launch slides say 25 Nov.
-    // Plan decision D2: follow the launch slides until Mufeed confirms otherwise.
-    start: '2026-11-25',
-    end: '2027-01-05',
-    source: 'V06 p5; Spons p5',
+    // Rescheduled by Mufeed on 2026-11-03 (replaces 25 Nov 2026 – 5 Jan 2027 in the decks).
+    // 28 Mar – 6 May 2027 is 40 days inclusive, matching operatingDays.
+    start: '2027-03-28',
+    end: '2027-05-06',
+    source: 'Mufeed update 2026-11-03',
   },
   operatingDays: { value: 40, source: 'Spons p7; Part p4' },
   area: { value: 46_353, unit: 'm²', source: 'V06 p9; Spons p7; Part p4' },
@@ -25,12 +25,13 @@ export const facts = {
   zoneCount: { value: 6, source: 'V06 p7; Spons p7' },
   stageSeats: { vip: 134, general: 1_496, source: 'V06 p10, p37' },
   location: {
-    city: { ar: 'الخبر', en: 'Al Khobar' } satisfies L,
+    // Mufeed (2026-11-03): the location is the Eastern Province; no city is named.
+    city: null as L | null,
     region: { ar: 'المنطقة الشرقية', en: 'Eastern Province' } satisfies L,
     country: { ar: 'المملكة العربية السعودية', en: 'Saudi Arabia' } satisfies L,
     // No venue or address is given in any deck.
     venue: null,
-    source: 'V06 p5; Spons p5, p13–18 (decision D1)',
+    source: 'Mufeed update 2026-11-03; V06 p5',
   },
   organiser: {
     name: { ar: 'شركة مفيد', en: 'Mufeed' } satisfies L,
@@ -47,6 +48,14 @@ export const facts = {
     { ar: 'حفر الباطن', en: 'Hafr Al-Batin' },
   ] satisfies L[],
 } as const;
+
+/** "City, Region" when a city is confirmed, otherwise the region alone. */
+export function placeName(lang: Lang): string {
+  const { city, region } = facts.location;
+  return city
+    ? `${tr(city, lang)}${lang === 'ar' ? '، ' : ', '}${tr(region, lang)}`
+    : tr(region, lang);
+}
 
 export const stageSeatTotal = facts.stageSeats.vip + facts.stageSeats.general;
 

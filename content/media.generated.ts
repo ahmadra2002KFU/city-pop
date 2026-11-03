@@ -91,16 +91,6 @@ export const media = {
     ],
     "fallback": "fast-pop-wall-960.jpg"
   },
-  "khobar-water-tower": {
-    "width": 2400,
-    "height": 1792,
-    "widths": [
-      640,
-      1280,
-      1920
-    ],
-    "fallback": "khobar-water-tower-1280.jpg"
-  },
   "masterplan-cad": {
     "width": 4096,
     "height": 1358,

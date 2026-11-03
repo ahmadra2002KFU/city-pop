@@ -67,7 +67,11 @@ const routes = [
 const absolute = (path) => new URL(`${basePath}${path}`, origin).href;
 
 // Facts superseded by the October 2026 decks must never come back.
-const retiredFacts = ['28,189', '2,100', '4 × 3', 'شهر كامل', 'one full month'];
+const retiredFacts = [
+  '28,189', '2,100', '4 × 3', 'شهر كامل', 'one full month',
+  // Rescheduled and relocated by Mufeed on 2026-11-03.
+  'Al Khobar', '2026-11-25', '2027-01-05', '25 November 2026', '5 January 2027',
+];
 
 // The event dates are the single source in content/facts.ts.
 const factsSource = readFileSync(resolve(root, 'content/facts.ts'), 'utf8');
@@ -176,7 +180,7 @@ for (const route of routes) {
   assert.equal(event.eventStatus, 'https://schema.org/EventScheduled', `${route.file}: JSON-LD eventStatus`);
   assert.equal(event.eventAttendanceMode, 'https://schema.org/OfflineEventAttendanceMode', `${route.file}: JSON-LD eventAttendanceMode`);
   assert.equal(event.location?.['@type'], 'Place', `${route.file}: JSON-LD location should be a Place`);
-  assert(event.location.address?.addressLocality && event.location.address?.addressCountry, `${route.file}: JSON-LD location needs a locality and country`);
+  assert(event.location.address?.addressRegion && event.location.address?.addressCountry, `${route.file}: JSON-LD location needs a region and country`);
   assert.equal(event.organizer?.['@type'], 'Organization', `${route.file}: JSON-LD organizer`);
   assert.equal(event.url, pageUrl.href, `${route.file}: JSON-LD url should equal the canonical URL`);
   assert(!('offers' in event), `${route.file}: JSON-LD must not state offers until ticket prices are announced`);

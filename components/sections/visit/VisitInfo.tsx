@@ -1,6 +1,6 @@
 import { Clock, MapPin } from 'lucide-react';
 import { formatDate, tr, type Lang } from '@/content/i18n';
-import { facts } from '@/content/facts';
+import { facts, placeName } from '@/content/facts';
 import { visitorsCopy } from '@/content/copy/visitors';
 import { SectionHeader } from '@/components/primitives/SectionHeader';
 import styles from './visit.module.css';
@@ -26,7 +26,6 @@ function monthSpans(startIso: string, endIso: string) {
 }
 
 export function VisitInfo({ lang }: { lang: Lang }) {
-  const separator = lang === 'ar' ? '، ' : ', ';
   const months = monthSpans(facts.dates.start, facts.dates.end);
   return (
     <section id="visit" className={`container ${styles.section}`} aria-labelledby="visit-title">
@@ -63,9 +62,7 @@ export function VisitInfo({ lang }: { lang: Lang }) {
             {tr(copy.whereLabel, lang)}
           </dt>
           <dd>
-            {tr(facts.location.city, lang)}
-            {separator}
-            {tr(facts.location.region, lang)}
+            {placeName(lang)}
             <span>{tr(copy.venueTba, lang)}</span>
           </dd>
         </div>
